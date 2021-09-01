@@ -2,6 +2,29 @@
 
 This application was generated using JHipster 6.10.3, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.10.3](https://www.jhipster.tech/documentation-archive/v6.10.3).
 
+## Command
+
+```
+ jhipster --blueprint vuejs
+ $ heroku login
+
+ To deploy your application to Heroku, run this command:
+
+jhipster heroku
+
+heroku info
+heroku pg:info
+heroku  config
+heroku run env
+
+```
+
+## Docs
+
+https://www.jhipster.tech/heroku/
+https://bpmlabs.github.io/heroku/
+https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java
+
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
