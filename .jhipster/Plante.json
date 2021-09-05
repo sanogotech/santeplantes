@@ -1,0 +1,63 @@
+{
+  "name": "Plante",
+  "fields": [
+    {
+      "fieldName": "nomScientifique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomCommun",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "famille",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "genre",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "maladie",
+      "otherEntityRelationshipName": "plante",
+      "relationshipName": "maladie"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "bienfait",
+      "otherEntityRelationshipName": "plante",
+      "relationshipName": "bienfait"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "maladie",
+      "otherEntityRelationshipName": "plante",
+      "relationshipName": "maladie",
+      "otherEntityField": "nom"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "bienfait",
+      "otherEntityRelationshipName": "plante",
+      "relationshipName": "bienfait",
+      "otherEntityField": "nom"
+    }
+  ],
+  "changelogDate": "20210905141646",
+  "entityTableName": "plante",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

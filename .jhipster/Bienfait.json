@@ -1,0 +1,53 @@
+{
+  "name": "Bienfait",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "vitamine",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mineraux",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "plante",
+      "otherEntityRelationshipName": "bienfait",
+      "relationshipName": "plante"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "plante",
+      "otherEntityRelationshipName": "bienfait",
+      "relationshipName": "plante",
+      "otherEntityField": "nomCommun"
+    }
+  ],
+  "changelogDate": "20210905141846",
+  "entityTableName": "bienfait",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

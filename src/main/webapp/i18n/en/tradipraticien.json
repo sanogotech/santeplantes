@@ -1,0 +1,31 @@
+{
+  "santeplantesApp": {
+    "tradipraticien": {
+      "home": {
+        "title": "Tradipraticiens",
+        "createLabel": "Create a new Tradipraticien",
+        "createOrEditLabel": "Create or edit a Tradipraticien",
+        "notFound": "No Tradipraticiens found"
+      },
+      "created": "A new Tradipraticien is created with identifier {{ param }}",
+      "updated": "A Tradipraticien is updated with identifier {{ param }}",
+      "deleted": "A Tradipraticien is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tradipraticien {{ id }}?"
+      },
+      "detail": {
+        "title": "Tradipraticien"
+      },
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "entreprise": "Entreprise",
+      "phone": "Phone",
+      "ville": "Ville",
+      "adresse": "Adresse",
+      "fiabilite": "Fiabilite",
+      "ras": "Ras",
+      "maladie": "Maladie",
+      "maladie": "Maladie"
+    }
+  }
+}

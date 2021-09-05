@@ -1,0 +1,29 @@
+{
+  "santeplantesApp": {
+    "plante": {
+      "home": {
+        "title": "Plantes",
+        "createLabel": "Create a new Plante",
+        "createOrEditLabel": "Create or edit a Plante",
+        "notFound": "No Plantes found"
+      },
+      "created": "A new Plante is created with identifier {{ param }}",
+      "updated": "A Plante is updated with identifier {{ param }}",
+      "deleted": "A Plante is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Plante {{ id }}?"
+      },
+      "detail": {
+        "title": "Plante"
+      },
+      "nomScientifique": "Nom Scientifique",
+      "nomCommun": "Nom Commun",
+      "famille": "Famille",
+      "genre": "Genre",
+      "maladie": "Maladie",
+      "bienfait": "Bienfait",
+      "maladie": "Maladie",
+      "bienfait": "Bienfait"
+    }
+  }
+}

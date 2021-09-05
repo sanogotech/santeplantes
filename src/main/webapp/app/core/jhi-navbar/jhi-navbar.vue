@@ -32,6 +32,26 @@
                         <font-awesome-icon icon="th-list" />
                         <span v-text="$t('global.menu.entities.main')">Entities</span>
                     </span>
+                    <b-dropdown-item to="/tradipraticien">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.tradipraticien')">Tradipraticien</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/maladie">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.maladie')">Maladie</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/plante">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.plante')">Plante</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/traitement">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.traitement')">Traitement</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/bienfait">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.bienfait')">Bienfait</span>
+                    </b-dropdown-item>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown
@@ -173,7 +193,7 @@
 
 .logo-img {
   height: 100%;
-  background: url("../../../content/images/logo-jhipster.png") no-repeat center
+  background: url("../../../content/images/arthemisia.jpg") no-repeat center
     center;
   background-size: contain;
   width: 100%;

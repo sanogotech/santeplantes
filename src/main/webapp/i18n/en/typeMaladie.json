@@ -1,0 +1,16 @@
+{
+  "santeplantesApp": {
+    "TypeMaladie": {
+      "null": "",
+      "Cardiovasculaire": "Cardiovasculaire",
+      "Cancers": "Cancers",
+      "Systemenerveux": "Systemenerveux",
+      "Cerveau": "Cerveau",
+      "Respiratoires": "Respiratoires",
+      "IntimeSexe": "IntimeSexe",
+      "Peau": "Peau",
+      "Digestif": "Digestif",
+      "OsArticulation": "OsArticulation"
+    }
+  }
+}

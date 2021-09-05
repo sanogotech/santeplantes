@@ -9,7 +9,7 @@ This application was generated using JHipster 6.10.3, you can find documentation
  $ heroku login
 
  To deploy your application to Heroku, run this command:
-
+heroku buildpacks:clear
 jhipster heroku
 
 heroku info
@@ -19,11 +19,20 @@ heroku run env
 
 ```
 
+## Santé
+
+https://www.doctissimo.fr/html/dossiers/sante_principales_maladies.htm
+
 ## Docs
 
 https://www.jhipster.tech/heroku/
 https://bpmlabs.github.io/heroku/
 https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java
+
+## Vuejs
+
+- https://www.bezkoder.com/vue-3-crud/
+- https://www.section.io/engineering-education/how-to-interact-with-an-api-from-a-vuejs-application/
 
 ## Development
 

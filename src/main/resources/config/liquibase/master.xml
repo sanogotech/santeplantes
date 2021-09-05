@@ -14,7 +14,17 @@
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210905141446_added_entity_Tradipraticien.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210905141546_added_entity_Maladie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210905141646_added_entity_Plante.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210905141746_added_entity_Traitement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210905141846_added_entity_Bienfait.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20210905141446_added_entity_constraints_Tradipraticien.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210905141546_added_entity_constraints_Maladie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210905141646_added_entity_constraints_Plante.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210905141746_added_entity_constraints_Traitement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210905141846_added_entity_constraints_Bienfait.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

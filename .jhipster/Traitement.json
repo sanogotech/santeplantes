@@ -1,0 +1,46 @@
+{
+  "name": "Traitement",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "fiabilite",
+      "fieldType": "Fiabilite",
+      "fieldValues": "HAUT,MOYEN,BAS",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "maladie",
+      "otherEntityRelationshipName": "traitement",
+      "relationshipName": "maladie"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "maladie",
+      "otherEntityRelationshipName": "traitement",
+      "relationshipName": "maladie",
+      "otherEntityField": "nom"
+    }
+  ],
+  "changelogDate": "20210905141746",
+  "entityTableName": "traitement",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

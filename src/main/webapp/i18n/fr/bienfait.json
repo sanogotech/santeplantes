@@ -1,0 +1,27 @@
+{
+  "santeplantesApp": {
+    "bienfait": {
+      "home": {
+        "title": "Bienfaits",
+        "createLabel": "Créer un nouveau Bienfait",
+        "createOrEditLabel": "Créer ou éditer un Bienfait",
+        "notFound": "Aucun Bienfait trouvé"
+      },
+      "created": "Un nouveau Bienfait a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Bienfait avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Bienfait avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Bienfait {{ id }} ?"
+      },
+      "detail": {
+        "title": "Bienfait"
+      },
+      "nom": "Nom",
+      "description": "Description",
+      "vitamine": "Vitamine",
+      "mineraux": "Mineraux",
+      "plante": "Plante",
+      "plante": "Plante"
+    }
+  }
+}

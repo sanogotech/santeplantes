@@ -48,6 +48,19 @@ public class CacheConfiguration {
             createCache(cm, com.macrosoftas.santeplantes.domain.User.class.getName());
             createCache(cm, com.macrosoftas.santeplantes.domain.Authority.class.getName());
             createCache(cm, com.macrosoftas.santeplantes.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.macrosoftas.santeplantes.domain.Tradipraticien.class.getName());
+            createCache(cm, com.macrosoftas.santeplantes.domain.Tradipraticien.class.getName() + ".maladies");
+            createCache(cm, com.macrosoftas.santeplantes.domain.Maladie.class.getName());
+            createCache(cm, com.macrosoftas.santeplantes.domain.Maladie.class.getName() + ".plantes");
+            createCache(cm, com.macrosoftas.santeplantes.domain.Maladie.class.getName() + ".tradipraticiens");
+            createCache(cm, com.macrosoftas.santeplantes.domain.Maladie.class.getName() + ".traitements");
+            createCache(cm, com.macrosoftas.santeplantes.domain.Plante.class.getName());
+            createCache(cm, com.macrosoftas.santeplantes.domain.Plante.class.getName() + ".maladies");
+            createCache(cm, com.macrosoftas.santeplantes.domain.Plante.class.getName() + ".bienfaits");
+            createCache(cm, com.macrosoftas.santeplantes.domain.Traitement.class.getName());
+            createCache(cm, com.macrosoftas.santeplantes.domain.Traitement.class.getName() + ".maladies");
+            createCache(cm, com.macrosoftas.santeplantes.domain.Bienfait.class.getName());
+            createCache(cm, com.macrosoftas.santeplantes.domain.Bienfait.class.getName() + ".plantes");
             // jhipster-needle-ehcache-add-entry
         };
     }

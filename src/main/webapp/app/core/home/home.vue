@@ -1,11 +1,15 @@
 <template>
     <div class="home row">
         <div class="col-md-3">
-            <span class="hipster img-fluid rounded"></span>
+		    
+            <span class="santeplantes img-plantemedoc rounded"></span>
+			<span class="santeplantes img-arthemisiaplante      rounded"></span>
+			<span class="santeplantes img-oseille      rounded"></span>
         </div>
         <div class="col-md-9">
             <h1 class="display-4" v-text="$t('home.title')">Welcome, Java Hipster!</h1>
-            <p class="lead" v-text="$t('home.subtitle')">This is your homepage</p>
+          
+			<marquee direction="left" behavior="alternate" style="height:30px;background-color:powderblue;font-family: cursive">GOD Bless You !</marquee>
 
             <div>
                 <div class="alert alert-success" v-if="authenticated">
@@ -13,30 +17,27 @@
                 </div>
 
                 <div class="alert alert-warning" v-if="!authenticated">
-                    <span v-text="$t('global.messages.info.authenticated.prefix')">If you want to </span>
-                    <a class="alert-link" v-on:click="openLogin()" v-text="$t('global.messages.info.authenticated.link')">sign in</a><span v-html="$t('global.messages.info.authenticated.suffix')">, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
+                      <p>  La phytothérapie, c’est l’emploi de plantes ou de médicaments à base de plantes (poudres, préparations en ampoules, infusions…) pour soigner naturellement les différents maux du corps humain.
+
+La phytothérapie est très certainement la meilleure approche pour prévenir mais aussi pour soigner la majorité de nos maux du quotidien.</p>
                 </div>
-                <div class="alert alert-warning" v-if="!authenticated">
-                    <span v-text="$t('global.messages.info.register.noaccount')">You don't have an account yet?</span>&nbsp;
-                    <router-link class="alert-link" to="/register" v-text="$t('global.messages.info.register.link')">Register a new account</router-link>
-                </div>
+				
+				<div class="alert alert-success" v-if="!authenticated">
+				<b>L’infusion</b> est le processus d’extraction de composés chimiques ou d’arômes à partir de matières végétales dans un solvant tel que l’eau, l’huile ou l’alcool, en permettant à la matière de rester en suspension dans le solvant avec le temps (un processus souvent appelé trempage). Une infusion est aussi le nom du liquide qui en résulte.
+
+				 </div>
+				
+				<p style="text-align:center">
+                  <span class="santeplantes img-moringa rounded"></span>
+				   <span class="santeplantes img-datte rounded"></span>
+				</p>
+				
+             
             </div>
 
-            <p v-text="$t('home.question')">
-                If you have any question on JHipster:
-            </p>
+           
 
-            <ul>
-                <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener" v-text="$t('home.link.homepage')">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener" v-text="$t('home.link.stackoverflow')">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener" v-text="$t('home.link.bugtracker')">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener" v-text="$t('home.link.chat')">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/jhipster" target="_blank" rel="noopener" v-text="$t('home.link.follow')">follow @jhipster on Twitter</a></li>
-            </ul>
-
-            <p>
-                <span v-text="$t('home.like')">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" v-text="$t('home.github')">GitHub</a>!
-            </p>
+         
         </div>
     </div>
 </template>

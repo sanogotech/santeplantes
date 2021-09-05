@@ -1,0 +1,72 @@
+{
+  "name": "Maladie",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeMaladie",
+      "fieldValues": "Cardiovasculaire,Cancers,Systemenerveux,Cerveau,Respiratoires,IntimeSexe,Peau,Digestif,OsArticulation",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "plante",
+      "otherEntityRelationshipName": "maladie",
+      "relationshipName": "plante"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "tradipraticien",
+      "otherEntityRelationshipName": "maladie",
+      "relationshipName": "tradipraticien"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "traitement",
+      "otherEntityRelationshipName": "maladie",
+      "relationshipName": "traitement"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "plante",
+      "otherEntityRelationshipName": "maladie",
+      "relationshipName": "plante",
+      "otherEntityField": "nom"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tradipraticien",
+      "otherEntityRelationshipName": "maladie",
+      "relationshipName": "tradipraticien",
+      "otherEntityField": "nom"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "traitement",
+      "otherEntityRelationshipName": "maladie",
+      "relationshipName": "traitement",
+      "otherEntityField": "nom"
+    }
+  ],
+  "changelogDate": "20210905141546",
+  "entityTableName": "maladie",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
