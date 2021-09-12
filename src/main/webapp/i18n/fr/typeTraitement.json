@@ -1,0 +1,10 @@
+{
+  "santeplantesApp": {
+    "TypeTraitement": {
+      "null": "",
+      "Preventif": "Preventif",
+      "Curatif": "Curatif",
+      "PreventifCuratif": "PreventifCuratif"
+    }
+  }
+}

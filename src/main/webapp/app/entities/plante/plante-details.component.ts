@@ -1,10 +1,13 @@
-import { Component, Vue, Inject } from 'vue-property-decorator';
+import { Component, Inject } from 'vue-property-decorator';
+
+import { mixins } from 'vue-class-component';
+import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import { IPlante } from '@/shared/model/plante.model';
 import PlanteService from './plante.service';
 
 @Component
-export default class PlanteDetails extends Vue {
+export default class PlanteDetails extends mixins(JhiDataUtils) {
   @Inject('planteService') private planteService: () => PlanteService;
   public plante: IPlante = {};
 

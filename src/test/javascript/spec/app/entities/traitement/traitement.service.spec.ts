@@ -4,7 +4,7 @@ import axios from 'axios';
 import * as config from '@/shared/config/config';
 import {} from '@/shared/date/filters';
 import TraitementService from '@/entities/traitement/traitement.service';
-import { Traitement, Fiabilite } from '@/shared/model/traitement.model';
+import { Traitement, Fiabilite, TypeExtraction, TypeTraitement } from '@/shared/model/traitement.model';
 
 const mockedAxios: any = axios;
 const error = {
@@ -30,7 +30,7 @@ describe('Service Tests', () => {
     beforeEach(() => {
       service = new TraitementService();
 
-      elemDefault = new Traitement(0, 'AAAAAAA', Fiabilite.HAUT);
+      elemDefault = new Traitement(0, 'AAAAAAA', Fiabilite.HAUT, TypeExtraction.Infusion, 'AAAAAAA', 'AAAAAAA', TypeTraitement.Preventif);
     });
 
     describe('Service methods', () => {
@@ -84,6 +84,10 @@ describe('Service Tests', () => {
           {
             nom: 'BBBBBB',
             fiabilite: 'BBBBBB',
+            typeExtraction: 'BBBBBB',
+            mixtureEtposologie: 'BBBBBB',
+            sourceInfos: 'BBBBBB',
+            typeTraitement: 'BBBBBB',
           },
           elemDefault
         );
@@ -112,6 +116,10 @@ describe('Service Tests', () => {
           {
             nom: 'BBBBBB',
             fiabilite: 'BBBBBB',
+            typeExtraction: 'BBBBBB',
+            mixtureEtposologie: 'BBBBBB',
+            sourceInfos: 'BBBBBB',
+            typeTraitement: 'BBBBBB',
           },
           elemDefault
         );

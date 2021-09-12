@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -22,6 +23,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.macrosoftas.santeplantes.domain.enumeration.Fiabilite;
+import com.macrosoftas.santeplantes.domain.enumeration.TypeExtraction;
+import com.macrosoftas.santeplantes.domain.enumeration.TypeTraitement;
 /**
  * Integration tests for the {@link TraitementResource} REST controller.
  */
@@ -35,6 +38,18 @@ public class TraitementResourceIT {
 
     private static final Fiabilite DEFAULT_FIABILITE = Fiabilite.HAUT;
     private static final Fiabilite UPDATED_FIABILITE = Fiabilite.MOYEN;
+
+    private static final TypeExtraction DEFAULT_TYPE_EXTRACTION = TypeExtraction.Infusion;
+    private static final TypeExtraction UPDATED_TYPE_EXTRACTION = TypeExtraction.Decoction;
+
+    private static final String DEFAULT_MIXTURE_ETPOSOLOGIE = "AAAAAAAAAA";
+    private static final String UPDATED_MIXTURE_ETPOSOLOGIE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_SOURCE_INFOS = "AAAAAAAAAA";
+    private static final String UPDATED_SOURCE_INFOS = "BBBBBBBBBB";
+
+    private static final TypeTraitement DEFAULT_TYPE_TRAITEMENT = TypeTraitement.Preventif;
+    private static final TypeTraitement UPDATED_TYPE_TRAITEMENT = TypeTraitement.Curatif;
 
     @Autowired
     private TraitementRepository traitementRepository;
@@ -56,7 +71,11 @@ public class TraitementResourceIT {
     public static Traitement createEntity(EntityManager em) {
         Traitement traitement = new Traitement()
             .nom(DEFAULT_NOM)
-            .fiabilite(DEFAULT_FIABILITE);
+            .fiabilite(DEFAULT_FIABILITE)
+            .typeExtraction(DEFAULT_TYPE_EXTRACTION)
+            .mixtureEtposologie(DEFAULT_MIXTURE_ETPOSOLOGIE)
+            .sourceInfos(DEFAULT_SOURCE_INFOS)
+            .typeTraitement(DEFAULT_TYPE_TRAITEMENT);
         return traitement;
     }
     /**
@@ -68,7 +87,11 @@ public class TraitementResourceIT {
     public static Traitement createUpdatedEntity(EntityManager em) {
         Traitement traitement = new Traitement()
             .nom(UPDATED_NOM)
-            .fiabilite(UPDATED_FIABILITE);
+            .fiabilite(UPDATED_FIABILITE)
+            .typeExtraction(UPDATED_TYPE_EXTRACTION)
+            .mixtureEtposologie(UPDATED_MIXTURE_ETPOSOLOGIE)
+            .sourceInfos(UPDATED_SOURCE_INFOS)
+            .typeTraitement(UPDATED_TYPE_TRAITEMENT);
         return traitement;
     }
 
@@ -93,6 +116,10 @@ public class TraitementResourceIT {
         Traitement testTraitement = traitementList.get(traitementList.size() - 1);
         assertThat(testTraitement.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testTraitement.getFiabilite()).isEqualTo(DEFAULT_FIABILITE);
+        assertThat(testTraitement.getTypeExtraction()).isEqualTo(DEFAULT_TYPE_EXTRACTION);
+        assertThat(testTraitement.getMixtureEtposologie()).isEqualTo(DEFAULT_MIXTURE_ETPOSOLOGIE);
+        assertThat(testTraitement.getSourceInfos()).isEqualTo(DEFAULT_SOURCE_INFOS);
+        assertThat(testTraitement.getTypeTraitement()).isEqualTo(DEFAULT_TYPE_TRAITEMENT);
     }
 
     @Test
@@ -155,6 +182,25 @@ public class TraitementResourceIT {
 
     @Test
     @Transactional
+    public void checkTypeExtractionIsRequired() throws Exception {
+        int databaseSizeBeforeTest = traitementRepository.findAll().size();
+        // set the field null
+        traitement.setTypeExtraction(null);
+
+        // Create the Traitement, which fails.
+
+
+        restTraitementMockMvc.perform(post("/api/traitements")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(traitement)))
+            .andExpect(status().isBadRequest());
+
+        List<Traitement> traitementList = traitementRepository.findAll();
+        assertThat(traitementList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTraitements() throws Exception {
         // Initialize the database
         traitementRepository.saveAndFlush(traitement);
@@ -165,7 +211,11 @@ public class TraitementResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(traitement.getId().intValue())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
-            .andExpect(jsonPath("$.[*].fiabilite").value(hasItem(DEFAULT_FIABILITE.toString())));
+            .andExpect(jsonPath("$.[*].fiabilite").value(hasItem(DEFAULT_FIABILITE.toString())))
+            .andExpect(jsonPath("$.[*].typeExtraction").value(hasItem(DEFAULT_TYPE_EXTRACTION.toString())))
+            .andExpect(jsonPath("$.[*].mixtureEtposologie").value(hasItem(DEFAULT_MIXTURE_ETPOSOLOGIE.toString())))
+            .andExpect(jsonPath("$.[*].sourceInfos").value(hasItem(DEFAULT_SOURCE_INFOS.toString())))
+            .andExpect(jsonPath("$.[*].typeTraitement").value(hasItem(DEFAULT_TYPE_TRAITEMENT.toString())));
     }
     
     @Test
@@ -180,7 +230,11 @@ public class TraitementResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(traitement.getId().intValue()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
-            .andExpect(jsonPath("$.fiabilite").value(DEFAULT_FIABILITE.toString()));
+            .andExpect(jsonPath("$.fiabilite").value(DEFAULT_FIABILITE.toString()))
+            .andExpect(jsonPath("$.typeExtraction").value(DEFAULT_TYPE_EXTRACTION.toString()))
+            .andExpect(jsonPath("$.mixtureEtposologie").value(DEFAULT_MIXTURE_ETPOSOLOGIE.toString()))
+            .andExpect(jsonPath("$.sourceInfos").value(DEFAULT_SOURCE_INFOS.toString()))
+            .andExpect(jsonPath("$.typeTraitement").value(DEFAULT_TYPE_TRAITEMENT.toString()));
     }
     @Test
     @Transactional
@@ -204,7 +258,11 @@ public class TraitementResourceIT {
         em.detach(updatedTraitement);
         updatedTraitement
             .nom(UPDATED_NOM)
-            .fiabilite(UPDATED_FIABILITE);
+            .fiabilite(UPDATED_FIABILITE)
+            .typeExtraction(UPDATED_TYPE_EXTRACTION)
+            .mixtureEtposologie(UPDATED_MIXTURE_ETPOSOLOGIE)
+            .sourceInfos(UPDATED_SOURCE_INFOS)
+            .typeTraitement(UPDATED_TYPE_TRAITEMENT);
 
         restTraitementMockMvc.perform(put("/api/traitements")
             .contentType(MediaType.APPLICATION_JSON)
@@ -217,6 +275,10 @@ public class TraitementResourceIT {
         Traitement testTraitement = traitementList.get(traitementList.size() - 1);
         assertThat(testTraitement.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testTraitement.getFiabilite()).isEqualTo(UPDATED_FIABILITE);
+        assertThat(testTraitement.getTypeExtraction()).isEqualTo(UPDATED_TYPE_EXTRACTION);
+        assertThat(testTraitement.getMixtureEtposologie()).isEqualTo(UPDATED_MIXTURE_ETPOSOLOGIE);
+        assertThat(testTraitement.getSourceInfos()).isEqualTo(UPDATED_SOURCE_INFOS);
+        assertThat(testTraitement.getTypeTraitement()).isEqualTo(UPDATED_TYPE_TRAITEMENT);
     }
 
     @Test

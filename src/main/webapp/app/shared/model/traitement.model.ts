@@ -1,4 +1,4 @@
-import { IMaladie } from '@/shared/model/maladie.model';
+import { IPlante } from '@/shared/model/plante.model';
 
 export const enum Fiabilite {
   HAUT = 'HAUT',
@@ -6,12 +6,28 @@ export const enum Fiabilite {
   BAS = 'BAS',
 }
 
+export const enum TypeExtraction {
+  Infusion = 'Infusion',
+  Decoction = 'Decoction',
+  Masseration = 'Masseration',
+  Autre = 'Autre',
+}
+
+export const enum TypeTraitement {
+  Preventif = 'Preventif',
+  Curatif = 'Curatif',
+  PreventifCuratif = 'PreventifCuratif',
+}
+
 export interface ITraitement {
   id?: number;
   nom?: string;
   fiabilite?: Fiabilite;
-  maladies?: IMaladie[];
-  maladie?: IMaladie;
+  typeExtraction?: TypeExtraction;
+  mixtureEtposologie?: any;
+  sourceInfos?: any;
+  typeTraitement?: TypeTraitement;
+  plante?: IPlante;
 }
 
 export class Traitement implements ITraitement {
@@ -19,7 +35,10 @@ export class Traitement implements ITraitement {
     public id?: number,
     public nom?: string,
     public fiabilite?: Fiabilite,
-    public maladies?: IMaladie[],
-    public maladie?: IMaladie
+    public typeExtraction?: TypeExtraction,
+    public mixtureEtposologie?: any,
+    public sourceInfos?: any,
+    public typeTraitement?: TypeTraitement,
+    public plante?: IPlante
   ) {}
 }

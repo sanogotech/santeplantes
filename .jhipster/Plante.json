@@ -9,7 +9,8 @@
       "fieldName": "nomCommun",
       "fieldType": "String",
       "fieldValidateRules": [
-        "required"
+        "required",
+        "unique"
       ]
     },
     {
@@ -19,40 +20,50 @@
     {
       "fieldName": "genre",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "bienfaits",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "350"
+    },
+    {
+      "fieldName": "imageBienfaits",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "typeMaladies",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "300"
+    },
+    {
+      "fieldName": "maladies",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required",
+        "maxlength"
+      ],
+      "fieldValidateRulesMaxlength": "350"
     }
   ],
-  "relationships": [
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "maladie",
-      "otherEntityRelationshipName": "plante",
-      "relationshipName": "maladie"
-    },
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "bienfait",
-      "otherEntityRelationshipName": "plante",
-      "relationshipName": "bienfait"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "maladie",
-      "otherEntityRelationshipName": "plante",
-      "relationshipName": "maladie",
-      "otherEntityField": "nom"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "bienfait",
-      "otherEntityRelationshipName": "plante",
-      "relationshipName": "bienfait",
-      "otherEntityField": "nom"
-    }
-  ],
+  "relationships": [],
   "changelogDate": "20210905141646",
   "entityTableName": "plante",
   "dto": "no",
-  "pagination": "pagination",
+  "pagination": "no",
   "service": "no",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,

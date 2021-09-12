@@ -24,13 +24,16 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th v-on:click="changeOrder('id')"><span v-text="$t('global.field.id')">ID</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'id'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('nomScientifique')"><span v-text="$t('santeplantesApp.plante.nomScientifique')">Nom Scientifique</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'nomScientifique'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('nomCommun')"><span v-text="$t('santeplantesApp.plante.nomCommun')">Nom Commun</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'nomCommun'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('famille')"><span v-text="$t('santeplantesApp.plante.famille')">Famille</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'famille'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('genre')"><span v-text="$t('santeplantesApp.plante.genre')">Genre</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'genre'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('maladie.nom')"><span v-text="$t('santeplantesApp.plante.maladie')">Maladie</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'maladie.nom'"></jhi-sort-indicator></th>
-                    <th v-on:click="changeOrder('bienfait.nom')"><span v-text="$t('santeplantesApp.plante.bienfait')">Bienfait</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'bienfait.nom'"></jhi-sort-indicator></th>
+                    <th><span v-text="$t('global.field.id')">ID</span></th>
+                    <th><span v-text="$t('santeplantesApp.plante.nomScientifique')">Nom Scientifique</span></th>
+                    <th><span v-text="$t('santeplantesApp.plante.nomCommun')">Nom Commun</span></th>
+                    <th><span v-text="$t('santeplantesApp.plante.famille')">Famille</span></th>
+                    <th><span v-text="$t('santeplantesApp.plante.genre')">Genre</span></th>
+                    <th><span v-text="$t('santeplantesApp.plante.photo')">Photo</span></th>
+                    <th><span v-text="$t('santeplantesApp.plante.bienfaits')">Bienfaits</span></th>
+                    <th><span v-text="$t('santeplantesApp.plante.imageBienfaits')">Image Bienfaits</span></th>
+                    <th><span v-text="$t('santeplantesApp.plante.typeMaladies')">Type Maladies</span></th>
+                    <th><span v-text="$t('santeplantesApp.plante.maladies')">Maladies</span></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -45,15 +48,20 @@
                     <td>{{plante.famille}}</td>
                     <td>{{plante.genre}}</td>
                     <td>
-                        <div v-if="plante.maladie">
-                            <router-link :to="{name: 'MaladieView', params: {maladieId: plante.maladie.id}}">{{plante.maladie.nom}}</router-link>
-                        </div>
+                        <a v-if="plante.photo" v-on:click="openFile(plante.photoContentType, plante.photo)">
+                            <img v-bind:src="'data:' + plante.photoContentType + ';base64,' + plante.photo" style="max-height: 30px;" alt="plante image"/>
+                        </a>
+                        <span v-if="plante.photo">{{plante.photoContentType}}, {{byteSize(plante.photo)}}</span>
                     </td>
+                    <td>{{plante.bienfaits}}</td>
                     <td>
-                        <div v-if="plante.bienfait">
-                            <router-link :to="{name: 'BienfaitView', params: {bienfaitId: plante.bienfait.id}}">{{plante.bienfait.nom}}</router-link>
-                        </div>
+                        <a v-if="plante.imageBienfaits" v-on:click="openFile(plante.imageBienfaitsContentType, plante.imageBienfaits)">
+                            <img v-bind:src="'data:' + plante.imageBienfaitsContentType + ';base64,' + plante.imageBienfaits" style="max-height: 30px;" alt="plante image"/>
+                        </a>
+                        <span v-if="plante.imageBienfaits">{{plante.imageBienfaitsContentType}}, {{byteSize(plante.imageBienfaits)}}</span>
                     </td>
+                    <td>{{plante.typeMaladies}}</td>
+                    <td>{{plante.maladies}}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <router-link :to="{name: 'PlanteView', params: {planteId: plante.id}}" tag="button" class="btn btn-info btn-sm details">
@@ -87,14 +95,6 @@
                 <button type="button" class="btn btn-primary" id="jhi-confirm-delete-plante" v-text="$t('entity.action.delete')" v-on:click="removePlante()">Delete</button>
             </div>
         </b-modal>
-        <div v-show="plantes && plantes.length > 0">
-            <div class="row justify-content-center">
-                <jhi-item-count :page="page" :total="queryCount" :itemsPerPage="itemsPerPage"></jhi-item-count>
-            </div>
-            <div class="row justify-content-center">
-                <b-pagination size="md" :total-rows="totalItems" v-model="page" :per-page="itemsPerPage" :change="loadPage(page)"></b-pagination>
-            </div>
-        </div>
     </div>
 </template>
 

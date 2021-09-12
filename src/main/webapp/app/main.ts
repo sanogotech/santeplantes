@@ -29,11 +29,8 @@ import ConfigurationService from '@/admin/configuration/configuration.service';
 
 /* tslint:disable */
 
-import TradipraticienService from '@/entities/tradipraticien/tradipraticien.service';
-import MaladieService from '@/entities/maladie/maladie.service';
 import PlanteService from '@/entities/plante/plante.service';
 import TraitementService from '@/entities/traitement/traitement.service';
-import BienfaitService from '@/entities/bienfait/bienfait.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 
 /* tslint:enable */
@@ -96,11 +93,8 @@ new Vue({
     metricsService: () => new MetricsService(),
     alertService: () => alertService,
     translationService: () => translationService,
-    tradipraticienService: () => new TradipraticienService(),
-    maladieService: () => new MaladieService(),
     planteService: () => new PlanteService(),
     traitementService: () => new TraitementService(),
-    bienfaitService: () => new BienfaitService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
     accountService: () => accountService,
   },

@@ -3,15 +3,18 @@ package com.macrosoftas.santeplantes.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.macrosoftas.santeplantes.domain.enumeration.Fiabilite;
+
+import com.macrosoftas.santeplantes.domain.enumeration.TypeExtraction;
+
+import com.macrosoftas.santeplantes.domain.enumeration.TypeTraitement;
 
 /**
  * A Traitement.
@@ -29,7 +32,7 @@ public class Traitement implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "nom", nullable = false)
+    @Column(name = "nom", nullable = false, unique = true)
     private String nom;
 
     @NotNull
@@ -37,13 +40,29 @@ public class Traitement implements Serializable {
     @Column(name = "fiabilite", nullable = false)
     private Fiabilite fiabilite;
 
-    @OneToMany(mappedBy = "traitement")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Maladie> maladies = new HashSet<>();
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_extraction", nullable = false)
+    private TypeExtraction typeExtraction;
+
+    
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    @Column(name = "mixture_etposologie", nullable = false)
+    private String mixtureEtposologie;
+
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    @Column(name = "source_infos")
+    private String sourceInfos;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_traitement")
+    private TypeTraitement typeTraitement;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "traitements", allowSetters = true)
-    private Maladie maladie;
+    private Plante plante;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -80,42 +99,69 @@ public class Traitement implements Serializable {
         this.fiabilite = fiabilite;
     }
 
-    public Set<Maladie> getMaladies() {
-        return maladies;
+    public TypeExtraction getTypeExtraction() {
+        return typeExtraction;
     }
 
-    public Traitement maladies(Set<Maladie> maladies) {
-        this.maladies = maladies;
+    public Traitement typeExtraction(TypeExtraction typeExtraction) {
+        this.typeExtraction = typeExtraction;
         return this;
     }
 
-    public Traitement addMaladie(Maladie maladie) {
-        this.maladies.add(maladie);
-        maladie.setTraitement(this);
+    public void setTypeExtraction(TypeExtraction typeExtraction) {
+        this.typeExtraction = typeExtraction;
+    }
+
+    public String getMixtureEtposologie() {
+        return mixtureEtposologie;
+    }
+
+    public Traitement mixtureEtposologie(String mixtureEtposologie) {
+        this.mixtureEtposologie = mixtureEtposologie;
         return this;
     }
 
-    public Traitement removeMaladie(Maladie maladie) {
-        this.maladies.remove(maladie);
-        maladie.setTraitement(null);
+    public void setMixtureEtposologie(String mixtureEtposologie) {
+        this.mixtureEtposologie = mixtureEtposologie;
+    }
+
+    public String getSourceInfos() {
+        return sourceInfos;
+    }
+
+    public Traitement sourceInfos(String sourceInfos) {
+        this.sourceInfos = sourceInfos;
         return this;
     }
 
-    public void setMaladies(Set<Maladie> maladies) {
-        this.maladies = maladies;
+    public void setSourceInfos(String sourceInfos) {
+        this.sourceInfos = sourceInfos;
     }
 
-    public Maladie getMaladie() {
-        return maladie;
+    public TypeTraitement getTypeTraitement() {
+        return typeTraitement;
     }
 
-    public Traitement maladie(Maladie maladie) {
-        this.maladie = maladie;
+    public Traitement typeTraitement(TypeTraitement typeTraitement) {
+        this.typeTraitement = typeTraitement;
         return this;
     }
 
-    public void setMaladie(Maladie maladie) {
-        this.maladie = maladie;
+    public void setTypeTraitement(TypeTraitement typeTraitement) {
+        this.typeTraitement = typeTraitement;
+    }
+
+    public Plante getPlante() {
+        return plante;
+    }
+
+    public Traitement plante(Plante plante) {
+        this.plante = plante;
+        return this;
+    }
+
+    public void setPlante(Plante plante) {
+        this.plante = plante;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -142,6 +188,10 @@ public class Traitement implements Serializable {
             "id=" + getId() +
             ", nom='" + getNom() + "'" +
             ", fiabilite='" + getFiabilite() + "'" +
+            ", typeExtraction='" + getTypeExtraction() + "'" +
+            ", mixtureEtposologie='" + getMixtureEtposologie() + "'" +
+            ", sourceInfos='" + getSourceInfos() + "'" +
+            ", typeTraitement='" + getTypeTraitement() + "'" +
             "}";
     }
 }

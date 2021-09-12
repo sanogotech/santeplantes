@@ -19,6 +19,34 @@ heroku run env
 
 ```
 
+## DB LiquideBase
+
+- mvn liquibase:diff
+
+- mvn liquibase:update
+
+- mvn liquibase:dropAll liquibase:update
+
+\*The update command will execute all the changelog files hence we get the database with the updated tables.
+
+```
+mvn liquibase:update
+```
+
+- The Rollback command will rollback the execution the the verion that is specified on the rollbackTag. In the below example the value 1.0 tag number.
+
+```
+mvn liquibase:rollback -Dliquibase.rollbackTag=1.0
+```
+
+- The updation will be done upto the specified version. In the below example the value 1.1 is the version upto which the database needs to be updated.
+
+```
+mvn liquibase:update -Dliquibase.toTag=1.1
+```
+
+mvn liquibase:updateSQL -Dliquibase.changesToApply=2
+
 ## Santé
 
 https://www.doctissimo.fr/html/dossiers/sante_principales_maladies.htm
@@ -29,10 +57,52 @@ https://www.jhipster.tech/heroku/
 https://bpmlabs.github.io/heroku/
 https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java
 
+## BootStrap
+
+- https://bbbootstrap.com/snippets/bootstrap-order-table-toggle-button-29934887
+
+## Tutos Vuejs
+
+- Vuejs in 3 Hours: https://youtu.be/4deVCNJq3qc
+  Vue.js is an open-source JavaScript framework for building user interfaces and single-page applications.
+
+💻 Code - Quiz App: https://github.com/gwenf/vue-quiz
+💻 Code - Pet App: https://github.com/gwenf/vue-adopt-pets
+
+⭐️ Contents ⭐️
+(0:32) Part 1:
+⌨️ The Vue Instance
+⌨️ Directives
+⌨️ Methods
+⌨️ Data-binding
+⌨️ Events
+⌨️ Filters
+⌨️ Computed Properties
+⌨️ Components
+⌨️ Component Lifecycle
+
+(35:33) Part 2:
+⌨️ Vue-cli
+⌨️ Vue devtools
+⌨️ Props & Slots
+⌨️ Making API calls
+⌨️ Vue-router
+⌨️ Vuex
+⌨️ Unit Testing
+⌨️ Recommended Resources
+
 ## Vuejs
 
+- https://www.primefaces.org/layouts/serenity-vue?ref=madewithvuejs.com
+- https://www.primefaces.org/primevue/showcase/#/setup
 - https://www.bezkoder.com/vue-3-crud/
 - https://www.section.io/engineering-education/how-to-interact-with-an-api-from-a-vuejs-application/
+- https://www.telerik.com/blogs/10-tips-to-increase-your-productivity-when-coding-in-vuejs
+- https://vuejsexamples.com/simple-alert-for-vue-js/
+
+## Spring Boot
+
+- https://devstory.net/11131/executer-des-taches-planifiees-en-arriere-plan-dans-spring
 
 ## Development
 

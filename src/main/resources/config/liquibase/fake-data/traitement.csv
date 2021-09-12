@@ -1,11 +1,11 @@
-id;nom;fiabilite
-1;hack;HAUT
-2;purple Re-engineered;BAS
-3;Buckinghamshire Beauty;MOYEN
-4;Sports granular;MOYEN
-5;New Hampshire Borders;BAS
-6;bypassing Usability;BAS
-7;Bedfordshire Books Credit Card Account;HAUT
-8;Coordinator;HAUT
-9;compressing feed Cambridgeshire;MOYEN
-10;implement;BAS
+id;nom;fiabilite;type_extraction;mixture_etposologie;source_infos;type_traitement
+1;hack;HAUT;Decoction;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;Curatif
+2;Bedfordshire South Carolina;HAUT;Decoction;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;PreventifCuratif
+3;relationships withdrawal Technician;MOYEN;Masseration;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;Curatif
+4;Cloned AGP;MOYEN;Decoction;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;Preventif
+5;Money Market Account function;HAUT;Decoction;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;PreventifCuratif
+6;Towels architect;HAUT;Infusion;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;Curatif
+7;Cocos (Keeling) Islands program;HAUT;Masseration;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;Curatif
+8;adapter Pitcairn Islands New Leu;MOYEN;Infusion;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;PreventifCuratif
+9;invoice;MOYEN;Decoction;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;Preventif
+10;digital installation;BAS;Autre;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;Curatif

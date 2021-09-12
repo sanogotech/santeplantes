@@ -5,12 +5,14 @@ import Vue2Filters from 'vue2-filters';
 import { ITraitement } from '@/shared/model/traitement.model';
 import AlertMixin from '@/shared/alert/alert.mixin';
 
+import JhiDataUtils from '@/shared/data/data-utils.service';
+
 import TraitementService from './traitement.service';
 
 @Component({
   mixins: [Vue2Filters.mixin],
 })
-export default class Traitement extends mixins(AlertMixin) {
+export default class Traitement extends mixins(JhiDataUtils, AlertMixin) {
   @Inject('traitementService') private traitementService: () => TraitementService;
   private removeId: number = null;
 

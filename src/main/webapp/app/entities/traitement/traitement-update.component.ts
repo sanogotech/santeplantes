@@ -1,9 +1,12 @@
-import { Component, Vue, Inject } from 'vue-property-decorator';
+import { Component, Inject } from 'vue-property-decorator';
+
+import { mixins } from 'vue-class-component';
+import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import { numeric, required, minLength, maxLength, minValue, maxValue } from 'vuelidate/lib/validators';
 
-import MaladieService from '../maladie/maladie.service';
-import { IMaladie } from '@/shared/model/maladie.model';
+import PlanteService from '../plante/plante.service';
+import { IPlante } from '@/shared/model/plante.model';
 
 import AlertService from '@/shared/alert/alert.service';
 import { ITraitement, Traitement } from '@/shared/model/traitement.model';
@@ -17,20 +20,28 @@ const validations: any = {
     fiabilite: {
       required,
     },
+    typeExtraction: {
+      required,
+    },
+    mixtureEtposologie: {
+      required,
+    },
+    sourceInfos: {},
+    typeTraitement: {},
   },
 };
 
 @Component({
   validations,
 })
-export default class TraitementUpdate extends Vue {
+export default class TraitementUpdate extends mixins(JhiDataUtils) {
   @Inject('alertService') private alertService: () => AlertService;
   @Inject('traitementService') private traitementService: () => TraitementService;
   public traitement: ITraitement = new Traitement();
 
-  @Inject('maladieService') private maladieService: () => MaladieService;
+  @Inject('planteService') private planteService: () => PlanteService;
 
-  public maladies: IMaladie[] = [];
+  public plantes: IPlante[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -89,15 +100,10 @@ export default class TraitementUpdate extends Vue {
   }
 
   public initRelationships(): void {
-    this.maladieService()
+    this.planteService()
       .retrieve()
       .then(res => {
-        this.maladies = res.data;
-      });
-    this.maladieService()
-      .retrieve()
-      .then(res => {
-        this.maladies = res.data;
+        this.plantes = res.data;
       });
   }
 }

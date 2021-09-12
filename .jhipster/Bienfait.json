@@ -22,6 +22,14 @@
     {
       "fieldName": "mineraux",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "focus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "testss",
+      "fieldType": "String"
     }
   ],
   "relationships": [

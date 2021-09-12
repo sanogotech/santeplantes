@@ -67,7 +67,21 @@ describe('Traitement e2e test', () => {
 
       await selectLastOption(updatePage.fiabiliteSelect);
 
-      // await  selectLastOption(updatePage.maladieSelect);
+      await selectLastOption(updatePage.typeExtractionSelect);
+
+      await waitUntilDisplayed(updatePage.mixtureEtposologieInput);
+      await updatePage.mixtureEtposologieInput.sendKeys('mixtureEtposologie');
+
+      expect(await updatePage.mixtureEtposologieInput.getAttribute('value')).to.match(/mixtureEtposologie/);
+
+      await waitUntilDisplayed(updatePage.sourceInfosInput);
+      await updatePage.sourceInfosInput.sendKeys('sourceInfos');
+
+      expect(await updatePage.sourceInfosInput.getAttribute('value')).to.match(/sourceInfos/);
+
+      await selectLastOption(updatePage.typeTraitementSelect);
+
+      // await  selectLastOption(updatePage.planteSelect);
 
       expect(await updatePage.saveButton.isEnabled()).to.be.true;
       await updatePage.saveButton.click();
@@ -128,6 +142,14 @@ describe('Traitement e2e test', () => {
         await updatePage.nomInput.clear();
         await updatePage.nomInput.sendKeys('modified');
         expect(await updatePage.nomInput.getAttribute('value')).to.match(/modified/);
+
+        await updatePage.mixtureEtposologieInput.clear();
+        await updatePage.mixtureEtposologieInput.sendKeys('updatedmixtureEtposologie');
+        expect(await updatePage.mixtureEtposologieInput.getAttribute('value')).to.match(/updatedmixtureEtposologie/);
+
+        await updatePage.sourceInfosInput.clear();
+        await updatePage.sourceInfosInput.sendKeys('updatedsourceInfos');
+        expect(await updatePage.sourceInfosInput.getAttribute('value')).to.match(/updatedsourceInfos/);
 
         await updatePage.saveButton.click();
 

@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -41,6 +42,25 @@ public class PlanteResourceIT {
     private static final String DEFAULT_GENRE = "AAAAAAAAAA";
     private static final String UPDATED_GENRE = "BBBBBBBBBB";
 
+    private static final byte[] DEFAULT_PHOTO = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_PHOTO = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_PHOTO_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_PHOTO_CONTENT_TYPE = "image/png";
+
+    private static final String DEFAULT_BIENFAITS = "AAAAAAAAAA";
+    private static final String UPDATED_BIENFAITS = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_IMAGE_BIENFAITS = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_IMAGE_BIENFAITS = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_IMAGE_BIENFAITS_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_IMAGE_BIENFAITS_CONTENT_TYPE = "image/png";
+
+    private static final String DEFAULT_TYPE_MALADIES = "AAAAAAAAAA";
+    private static final String UPDATED_TYPE_MALADIES = "BBBBBBBBBB";
+
+    private static final String DEFAULT_MALADIES = "AAAAAAAAAA";
+    private static final String UPDATED_MALADIES = "BBBBBBBBBB";
+
     @Autowired
     private PlanteRepository planteRepository;
 
@@ -63,7 +83,14 @@ public class PlanteResourceIT {
             .nomScientifique(DEFAULT_NOM_SCIENTIFIQUE)
             .nomCommun(DEFAULT_NOM_COMMUN)
             .famille(DEFAULT_FAMILLE)
-            .genre(DEFAULT_GENRE);
+            .genre(DEFAULT_GENRE)
+            .photo(DEFAULT_PHOTO)
+            .photoContentType(DEFAULT_PHOTO_CONTENT_TYPE)
+            .bienfaits(DEFAULT_BIENFAITS)
+            .imageBienfaits(DEFAULT_IMAGE_BIENFAITS)
+            .imageBienfaitsContentType(DEFAULT_IMAGE_BIENFAITS_CONTENT_TYPE)
+            .typeMaladies(DEFAULT_TYPE_MALADIES)
+            .maladies(DEFAULT_MALADIES);
         return plante;
     }
     /**
@@ -77,7 +104,14 @@ public class PlanteResourceIT {
             .nomScientifique(UPDATED_NOM_SCIENTIFIQUE)
             .nomCommun(UPDATED_NOM_COMMUN)
             .famille(UPDATED_FAMILLE)
-            .genre(UPDATED_GENRE);
+            .genre(UPDATED_GENRE)
+            .photo(UPDATED_PHOTO)
+            .photoContentType(UPDATED_PHOTO_CONTENT_TYPE)
+            .bienfaits(UPDATED_BIENFAITS)
+            .imageBienfaits(UPDATED_IMAGE_BIENFAITS)
+            .imageBienfaitsContentType(UPDATED_IMAGE_BIENFAITS_CONTENT_TYPE)
+            .typeMaladies(UPDATED_TYPE_MALADIES)
+            .maladies(UPDATED_MALADIES);
         return plante;
     }
 
@@ -104,6 +138,13 @@ public class PlanteResourceIT {
         assertThat(testPlante.getNomCommun()).isEqualTo(DEFAULT_NOM_COMMUN);
         assertThat(testPlante.getFamille()).isEqualTo(DEFAULT_FAMILLE);
         assertThat(testPlante.getGenre()).isEqualTo(DEFAULT_GENRE);
+        assertThat(testPlante.getPhoto()).isEqualTo(DEFAULT_PHOTO);
+        assertThat(testPlante.getPhotoContentType()).isEqualTo(DEFAULT_PHOTO_CONTENT_TYPE);
+        assertThat(testPlante.getBienfaits()).isEqualTo(DEFAULT_BIENFAITS);
+        assertThat(testPlante.getImageBienfaits()).isEqualTo(DEFAULT_IMAGE_BIENFAITS);
+        assertThat(testPlante.getImageBienfaitsContentType()).isEqualTo(DEFAULT_IMAGE_BIENFAITS_CONTENT_TYPE);
+        assertThat(testPlante.getTypeMaladies()).isEqualTo(DEFAULT_TYPE_MALADIES);
+        assertThat(testPlante.getMaladies()).isEqualTo(DEFAULT_MALADIES);
     }
 
     @Test
@@ -147,6 +188,63 @@ public class PlanteResourceIT {
 
     @Test
     @Transactional
+    public void checkBienfaitsIsRequired() throws Exception {
+        int databaseSizeBeforeTest = planteRepository.findAll().size();
+        // set the field null
+        plante.setBienfaits(null);
+
+        // Create the Plante, which fails.
+
+
+        restPlanteMockMvc.perform(post("/api/plantes")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(plante)))
+            .andExpect(status().isBadRequest());
+
+        List<Plante> planteList = planteRepository.findAll();
+        assertThat(planteList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkTypeMaladiesIsRequired() throws Exception {
+        int databaseSizeBeforeTest = planteRepository.findAll().size();
+        // set the field null
+        plante.setTypeMaladies(null);
+
+        // Create the Plante, which fails.
+
+
+        restPlanteMockMvc.perform(post("/api/plantes")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(plante)))
+            .andExpect(status().isBadRequest());
+
+        List<Plante> planteList = planteRepository.findAll();
+        assertThat(planteList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkMaladiesIsRequired() throws Exception {
+        int databaseSizeBeforeTest = planteRepository.findAll().size();
+        // set the field null
+        plante.setMaladies(null);
+
+        // Create the Plante, which fails.
+
+
+        restPlanteMockMvc.perform(post("/api/plantes")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(plante)))
+            .andExpect(status().isBadRequest());
+
+        List<Plante> planteList = planteRepository.findAll();
+        assertThat(planteList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllPlantes() throws Exception {
         // Initialize the database
         planteRepository.saveAndFlush(plante);
@@ -159,7 +257,14 @@ public class PlanteResourceIT {
             .andExpect(jsonPath("$.[*].nomScientifique").value(hasItem(DEFAULT_NOM_SCIENTIFIQUE)))
             .andExpect(jsonPath("$.[*].nomCommun").value(hasItem(DEFAULT_NOM_COMMUN)))
             .andExpect(jsonPath("$.[*].famille").value(hasItem(DEFAULT_FAMILLE)))
-            .andExpect(jsonPath("$.[*].genre").value(hasItem(DEFAULT_GENRE)));
+            .andExpect(jsonPath("$.[*].genre").value(hasItem(DEFAULT_GENRE)))
+            .andExpect(jsonPath("$.[*].photoContentType").value(hasItem(DEFAULT_PHOTO_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].photo").value(hasItem(Base64Utils.encodeToString(DEFAULT_PHOTO))))
+            .andExpect(jsonPath("$.[*].bienfaits").value(hasItem(DEFAULT_BIENFAITS)))
+            .andExpect(jsonPath("$.[*].imageBienfaitsContentType").value(hasItem(DEFAULT_IMAGE_BIENFAITS_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].imageBienfaits").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE_BIENFAITS))))
+            .andExpect(jsonPath("$.[*].typeMaladies").value(hasItem(DEFAULT_TYPE_MALADIES)))
+            .andExpect(jsonPath("$.[*].maladies").value(hasItem(DEFAULT_MALADIES)));
     }
     
     @Test
@@ -176,7 +281,14 @@ public class PlanteResourceIT {
             .andExpect(jsonPath("$.nomScientifique").value(DEFAULT_NOM_SCIENTIFIQUE))
             .andExpect(jsonPath("$.nomCommun").value(DEFAULT_NOM_COMMUN))
             .andExpect(jsonPath("$.famille").value(DEFAULT_FAMILLE))
-            .andExpect(jsonPath("$.genre").value(DEFAULT_GENRE));
+            .andExpect(jsonPath("$.genre").value(DEFAULT_GENRE))
+            .andExpect(jsonPath("$.photoContentType").value(DEFAULT_PHOTO_CONTENT_TYPE))
+            .andExpect(jsonPath("$.photo").value(Base64Utils.encodeToString(DEFAULT_PHOTO)))
+            .andExpect(jsonPath("$.bienfaits").value(DEFAULT_BIENFAITS))
+            .andExpect(jsonPath("$.imageBienfaitsContentType").value(DEFAULT_IMAGE_BIENFAITS_CONTENT_TYPE))
+            .andExpect(jsonPath("$.imageBienfaits").value(Base64Utils.encodeToString(DEFAULT_IMAGE_BIENFAITS)))
+            .andExpect(jsonPath("$.typeMaladies").value(DEFAULT_TYPE_MALADIES))
+            .andExpect(jsonPath("$.maladies").value(DEFAULT_MALADIES));
     }
     @Test
     @Transactional
@@ -202,7 +314,14 @@ public class PlanteResourceIT {
             .nomScientifique(UPDATED_NOM_SCIENTIFIQUE)
             .nomCommun(UPDATED_NOM_COMMUN)
             .famille(UPDATED_FAMILLE)
-            .genre(UPDATED_GENRE);
+            .genre(UPDATED_GENRE)
+            .photo(UPDATED_PHOTO)
+            .photoContentType(UPDATED_PHOTO_CONTENT_TYPE)
+            .bienfaits(UPDATED_BIENFAITS)
+            .imageBienfaits(UPDATED_IMAGE_BIENFAITS)
+            .imageBienfaitsContentType(UPDATED_IMAGE_BIENFAITS_CONTENT_TYPE)
+            .typeMaladies(UPDATED_TYPE_MALADIES)
+            .maladies(UPDATED_MALADIES);
 
         restPlanteMockMvc.perform(put("/api/plantes")
             .contentType(MediaType.APPLICATION_JSON)
@@ -217,6 +336,13 @@ public class PlanteResourceIT {
         assertThat(testPlante.getNomCommun()).isEqualTo(UPDATED_NOM_COMMUN);
         assertThat(testPlante.getFamille()).isEqualTo(UPDATED_FAMILLE);
         assertThat(testPlante.getGenre()).isEqualTo(UPDATED_GENRE);
+        assertThat(testPlante.getPhoto()).isEqualTo(UPDATED_PHOTO);
+        assertThat(testPlante.getPhotoContentType()).isEqualTo(UPDATED_PHOTO_CONTENT_TYPE);
+        assertThat(testPlante.getBienfaits()).isEqualTo(UPDATED_BIENFAITS);
+        assertThat(testPlante.getImageBienfaits()).isEqualTo(UPDATED_IMAGE_BIENFAITS);
+        assertThat(testPlante.getImageBienfaitsContentType()).isEqualTo(UPDATED_IMAGE_BIENFAITS_CONTENT_TYPE);
+        assertThat(testPlante.getTypeMaladies()).isEqualTo(UPDATED_TYPE_MALADIES);
+        assertThat(testPlante.getMaladies()).isEqualTo(UPDATED_MALADIES);
     }
 
     @Test

@@ -20,10 +20,11 @@
       "nomCommun": "Nom Commun",
       "famille": "Famille",
       "genre": "Genre",
-      "maladie": "Maladie",
-      "bienfait": "Bienfait",
-      "maladie": "Maladie",
-      "bienfait": "Bienfait"
+      "photo": "Photo",
+      "bienfaits": "Bienfaits",
+      "imageBienfaits": "Image Bienfaits",
+      "typeMaladies": "Type Maladies",
+      "maladies": "Maladies"
     }
   }
 }

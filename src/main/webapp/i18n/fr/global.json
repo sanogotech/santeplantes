@@ -6,12 +6,9 @@
       "home": "Accueil",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entités",
-        "tradipraticien": "Tradipraticien",
-        "maladie": "Maladie",
+        "main": "Santé par les Aliments",
         "plante": "Plante",
         "traitement": "Traitement",
-        "bienfait": "Bienfait",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

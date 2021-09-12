@@ -1,12 +1,9 @@
-import { Component, Vue, Inject } from 'vue-property-decorator';
+import { Component, Inject } from 'vue-property-decorator';
+
+import { mixins } from 'vue-class-component';
+import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import { numeric, required, minLength, maxLength, minValue, maxValue } from 'vuelidate/lib/validators';
-
-import MaladieService from '../maladie/maladie.service';
-import { IMaladie } from '@/shared/model/maladie.model';
-
-import BienfaitService from '../bienfait/bienfait.service';
-import { IBienfait } from '@/shared/model/bienfait.model';
 
 import AlertService from '@/shared/alert/alert.service';
 import { IPlante, Plante } from '@/shared/model/plante.model';
@@ -20,24 +17,30 @@ const validations: any = {
     },
     famille: {},
     genre: {},
+    photo: {},
+    bienfaits: {
+      required,
+      maxLength: maxLength(350),
+    },
+    imageBienfaits: {},
+    typeMaladies: {
+      required,
+      maxLength: maxLength(300),
+    },
+    maladies: {
+      required,
+      maxLength: maxLength(350),
+    },
   },
 };
 
 @Component({
   validations,
 })
-export default class PlanteUpdate extends Vue {
+export default class PlanteUpdate extends mixins(JhiDataUtils) {
   @Inject('alertService') private alertService: () => AlertService;
   @Inject('planteService') private planteService: () => PlanteService;
   public plante: IPlante = new Plante();
-
-  @Inject('maladieService') private maladieService: () => MaladieService;
-
-  public maladies: IMaladie[] = [];
-
-  @Inject('bienfaitService') private bienfaitService: () => BienfaitService;
-
-  public bienfaits: IBienfait[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -46,7 +49,6 @@ export default class PlanteUpdate extends Vue {
       if (to.params.planteId) {
         vm.retrievePlante(to.params.planteId);
       }
-      vm.initRelationships();
     });
   }
 
@@ -95,26 +97,19 @@ export default class PlanteUpdate extends Vue {
     this.$router.go(-1);
   }
 
-  public initRelationships(): void {
-    this.maladieService()
-      .retrieve()
-      .then(res => {
-        this.maladies = res.data;
-      });
-    this.bienfaitService()
-      .retrieve()
-      .then(res => {
-        this.bienfaits = res.data;
-      });
-    this.maladieService()
-      .retrieve()
-      .then(res => {
-        this.maladies = res.data;
-      });
-    this.bienfaitService()
-      .retrieve()
-      .then(res => {
-        this.bienfaits = res.data;
-      });
+  public clearInputImage(field, fieldContentType, idInput): void {
+    if (this.plante && field && fieldContentType) {
+      if (this.plante.hasOwnProperty(field)) {
+        this.plante[field] = null;
+      }
+      if (this.plante.hasOwnProperty(fieldContentType)) {
+        this.plante[fieldContentType] = null;
+      }
+      if (idInput) {
+        (<any>this).$refs[idInput] = null;
+      }
+    }
   }
+
+  public initRelationships(): void {}
 }

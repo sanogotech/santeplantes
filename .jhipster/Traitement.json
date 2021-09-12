@@ -5,7 +5,8 @@
       "fieldName": "nom",
       "fieldType": "String",
       "fieldValidateRules": [
-        "required"
+        "required",
+        "unique"
       ]
     },
     {
@@ -15,21 +16,41 @@
       "fieldValidateRules": [
         "required"
       ]
+    },
+    {
+      "fieldName": "typeExtraction",
+      "fieldType": "TypeExtraction",
+      "fieldValues": "Infusion,Decoction,Masseration,Autre",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "mixtureEtposologie",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "sourceInfos",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "typeTraitement",
+      "fieldType": "TypeTraitement",
+      "fieldValues": "Preventif,Curatif,PreventifCuratif"
     }
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "maladie",
-      "otherEntityRelationshipName": "traitement",
-      "relationshipName": "maladie"
-    },
-    {
       "relationshipType": "many-to-one",
-      "otherEntityName": "maladie",
+      "otherEntityName": "plante",
       "otherEntityRelationshipName": "traitement",
-      "relationshipName": "maladie",
-      "otherEntityField": "nom"
+      "relationshipName": "plante",
+      "otherEntityField": "nomCommun"
     }
   ],
   "changelogDate": "20210905141746",

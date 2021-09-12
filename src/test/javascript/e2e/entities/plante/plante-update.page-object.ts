@@ -16,7 +16,13 @@ export default class PlanteUpdatePage extends AlertPage {
 
   genreInput: ElementFinder = element(by.css('input#plante-genre'));
 
-  maladieSelect = element(by.css('select#plante-maladie'));
+  photoInput: ElementFinder = element(by.css('input#file_photo'));
 
-  bienfaitSelect = element(by.css('select#plante-bienfait'));
+  bienfaitsInput: ElementFinder = element(by.css('input#plante-bienfaits'));
+
+  imageBienfaitsInput: ElementFinder = element(by.css('input#file_imageBienfaits'));
+
+  typeMaladiesInput: ElementFinder = element(by.css('input#plante-typeMaladies'));
+
+  maladiesInput: ElementFinder = element(by.css('input#plante-maladies'));
 }

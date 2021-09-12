@@ -17,11 +17,35 @@
                         <span v-text="$t('santeplantesApp.Fiabilite.' + traitement.fiabilite)">{{traitement.fiabilite}}</span>
                     </dd>
                     <dt>
-                        <span v-text="$t('santeplantesApp.traitement.maladie')">Maladie</span>
+                        <span v-text="$t('santeplantesApp.traitement.typeExtraction')">Type Extraction</span>
                     </dt>
                     <dd>
-                        <div v-if="traitement.maladie">
-                            <router-link :to="{name: 'MaladieView', params: {maladieId: traitement.maladie.id}}">{{traitement.maladie.nom}}</router-link>
+                        <span v-text="$t('santeplantesApp.TypeExtraction.' + traitement.typeExtraction)">{{traitement.typeExtraction}}</span>
+                    </dd>
+                    <dt>
+                        <span v-text="$t('santeplantesApp.traitement.mixtureEtposologie')">Mixture Etposologie</span>
+                    </dt>
+                    <dd>
+                        <span>{{traitement.mixtureEtposologie}}</span>
+                    </dd>
+                    <dt>
+                        <span v-text="$t('santeplantesApp.traitement.sourceInfos')">Source Infos</span>
+                    </dt>
+                    <dd>
+                        <span>{{traitement.sourceInfos}}</span>
+                    </dd>
+                    <dt>
+                        <span v-text="$t('santeplantesApp.traitement.typeTraitement')">Type Traitement</span>
+                    </dt>
+                    <dd>
+                        <span v-text="$t('santeplantesApp.TypeTraitement.' + traitement.typeTraitement)">{{traitement.typeTraitement}}</span>
+                    </dd>
+                    <dt>
+                        <span v-text="$t('santeplantesApp.traitement.plante')">Plante</span>
+                    </dt>
+                    <dd>
+                        <div v-if="traitement.plante">
+                            <router-link :to="{name: 'PlanteView', params: {planteId: traitement.plante.id}}">{{traitement.plante.nomCommun}}</router-link>
                         </div>
                     </dd>
                 </dl>

@@ -1,76 +1,7 @@
 {
   "name": "Tradipraticien",
-  "fields": [
-    {
-      "fieldName": "nom",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "prenom",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "entreprise",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "phone",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "ville",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "adresse",
-      "fieldType": "String",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "fiabilite",
-      "fieldType": "Fiabilite",
-      "fieldValues": "HAUT,MOYEN,BAS",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
-      "fieldName": "ras",
-      "fieldType": "Boolean"
-    }
-  ],
-  "relationships": [
-    {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "maladie",
-      "otherEntityRelationshipName": "tradipraticien",
-      "relationshipName": "maladie"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "maladie",
-      "otherEntityRelationshipName": "tradipraticien",
-      "relationshipName": "maladie",
-      "otherEntityField": "nom"
-    }
-  ],
+  "fields": [],
+  "relationships": [],
   "changelogDate": "20210905141446",
   "entityTableName": "tradipraticien",
   "dto": "no",
@@ -81,5 +12,7 @@
   "readOnly": false,
   "embedded": false,
   "clientRootFolder": "",
-  "applications": "*"
+  "applications": "*",
+  "searchEngine": false,
+  "databaseType": "sql"
 }

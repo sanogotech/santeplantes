@@ -74,6 +74,10 @@ class TraitementGatlingTest extends Simulation {
                 "id":null
                 , "nom":"SAMPLE_TEXT"
                 , "fiabilite":"HAUT"
+                , "typeExtraction":"Infusion"
+                , "mixtureEtposologie":null
+                , "sourceInfos":null
+                , "typeTraitement":"Preventif"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_traitement_url"))).exitHereIfFailed

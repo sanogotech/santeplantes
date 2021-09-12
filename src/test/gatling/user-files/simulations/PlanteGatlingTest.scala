@@ -76,6 +76,11 @@ class PlanteGatlingTest extends Simulation {
                 , "nomCommun":"SAMPLE_TEXT"
                 , "famille":"SAMPLE_TEXT"
                 , "genre":"SAMPLE_TEXT"
+                , "photo":null
+                , "bienfaits":"SAMPLE_TEXT"
+                , "imageBienfaits":null
+                , "typeMaladies":"SAMPLE_TEXT"
+                , "maladies":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_plante_url"))).exitHereIfFailed

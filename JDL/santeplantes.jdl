@@ -39,6 +39,7 @@ entity Plante {
 entity Traitement {
 	nom String required
     fiabilite Fiabilite required
+	description String required
 }
 
 // antihistaminiques et anti-inflammatoires
@@ -47,6 +48,8 @@ entity Bienfait {
      description String required
      vitamine  String
      mineraux  String
+	 focus     String
+	 testss    String
 }
 
 enum TypeExtraction {

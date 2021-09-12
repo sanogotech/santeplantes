@@ -11,5 +11,13 @@ export default class TraitementUpdatePage extends AlertPage {
   nomInput: ElementFinder = element(by.css('input#traitement-nom'));
 
   fiabiliteSelect = element(by.css('select#traitement-fiabilite'));
-  maladieSelect = element(by.css('select#traitement-maladie'));
+
+  typeExtractionSelect = element(by.css('select#traitement-typeExtraction'));
+
+  mixtureEtposologieInput: ElementFinder = element(by.css('textarea#traitement-mixtureEtposologie'));
+
+  sourceInfosInput: ElementFinder = element(by.css('textarea#traitement-sourceInfos'));
+
+  typeTraitementSelect = element(by.css('select#traitement-typeTraitement'));
+  planteSelect = element(by.css('select#traitement-plante'));
 }

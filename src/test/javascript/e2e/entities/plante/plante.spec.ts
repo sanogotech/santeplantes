@@ -19,6 +19,8 @@ import {
   waitUntilHidden,
 } from '../../util/utils';
 
+import path from 'path';
+
 const expect = chai.expect;
 
 describe('Plante e2e test', () => {
@@ -27,6 +29,8 @@ describe('Plante e2e test', () => {
   let detailsPage: PlanteDetailsPage;
   let listPage: PlanteComponentsPage;
   let deleteDialog: PlanteDeleteDialog;
+  const fileToUpload = '../../../../../main/webapp/content/images/logo-jhipster.png';
+  const absolutePath = path.resolve(__dirname, fileToUpload);
   let beforeRecordsCount = 0;
 
   before(async () => {
@@ -74,8 +78,20 @@ describe('Plante e2e test', () => {
       await updatePage.genreInput.sendKeys('genre');
       expect(await updatePage.genreInput.getAttribute('value')).to.match(/genre/);
 
-      // await  selectLastOption(updatePage.maladieSelect);
-      // await  selectLastOption(updatePage.bienfaitSelect);
+      await waitUntilDisplayed(updatePage.photoInput);
+      await updatePage.photoInput.sendKeys(absolutePath);
+
+      await updatePage.bienfaitsInput.sendKeys('bienfaits');
+      expect(await updatePage.bienfaitsInput.getAttribute('value')).to.match(/bienfaits/);
+
+      await waitUntilDisplayed(updatePage.imageBienfaitsInput);
+      await updatePage.imageBienfaitsInput.sendKeys(absolutePath);
+
+      await updatePage.typeMaladiesInput.sendKeys('typeMaladies');
+      expect(await updatePage.typeMaladiesInput.getAttribute('value')).to.match(/typeMaladies/);
+
+      await updatePage.maladiesInput.sendKeys('maladies');
+      expect(await updatePage.maladiesInput.getAttribute('value')).to.match(/maladies/);
 
       expect(await updatePage.saveButton.isEnabled()).to.be.true;
       await updatePage.saveButton.click();
@@ -92,7 +108,7 @@ describe('Plante e2e test', () => {
 
     describe('Details, Update, Delete flow', () => {
       after(async () => {
-        const deleteButton = listPage.getDeleteButton(listPage.records.first());
+        const deleteButton = listPage.getDeleteButton(listPage.records.last());
         await click(deleteButton);
 
         deleteDialog = new PlanteDeleteDialog();
@@ -111,7 +127,7 @@ describe('Plante e2e test', () => {
       });
 
       it('should load details Plante page and fetch data', async () => {
-        const detailsButton = listPage.getDetailsButton(listPage.records.first());
+        const detailsButton = listPage.getDetailsButton(listPage.records.last());
         await click(detailsButton);
 
         detailsPage = new PlanteDetailsPage();
@@ -126,7 +142,7 @@ describe('Plante e2e test', () => {
       });
 
       it('should load edit Plante page, fetch data and update', async () => {
-        const editButton = listPage.getEditButton(listPage.records.first());
+        const editButton = listPage.getEditButton(listPage.records.last());
         await click(editButton);
 
         await waitUntilAllDisplayed([updatePage.title, updatePage.footer, updatePage.saveButton]);
@@ -148,6 +164,18 @@ describe('Plante e2e test', () => {
         await updatePage.genreInput.clear();
         await updatePage.genreInput.sendKeys('modified');
         expect(await updatePage.genreInput.getAttribute('value')).to.match(/modified/);
+
+        await updatePage.bienfaitsInput.clear();
+        await updatePage.bienfaitsInput.sendKeys('modified');
+        expect(await updatePage.bienfaitsInput.getAttribute('value')).to.match(/modified/);
+
+        await updatePage.typeMaladiesInput.clear();
+        await updatePage.typeMaladiesInput.sendKeys('modified');
+        expect(await updatePage.typeMaladiesInput.getAttribute('value')).to.match(/modified/);
+
+        await updatePage.maladiesInput.clear();
+        await updatePage.maladiesInput.sendKeys('modified');
+        expect(await updatePage.maladiesInput.getAttribute('value')).to.match(/modified/);
 
         await updatePage.saveButton.click();
 

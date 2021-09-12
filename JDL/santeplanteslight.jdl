@@ -1,0 +1,49 @@
+
+
+
+
+entity Plante {
+	nomScientifique String
+    nomCommun String required unique
+    famille  String
+    genre String
+	photo ImageBlob
+	bienfaits String  required  maxlength(350)
+	ImageBienfaits ImageBlob
+	typeMaladies  String  required  maxlength(300)
+    maladies String required maxlength(350)
+}
+
+entity Traitement {
+	nom String required unique
+    fiabilite Fiabilite required
+    typeExtraction TypeExtraction required
+	mixtureEtposologie TextBlob required 
+    sourceInfos TextBlob 
+	typeTraitement TypeTraitement  
+}
+
+
+enum TypeExtraction {
+    Infusion, Decoction, Masseration, Autre
+}
+
+enum TypeTraitement {
+    Preventif, Curatif, PreventifCuratif
+}
+
+enum Fiabilite {
+   HAUT, MOYEN, BAS
+}
+
+relationship ManyToOne {
+  Traitement{plante(nomCommun)} to Plante
+}
+
+
+
+
+// Set pagination options
+//paginate Plante  with pagination
+
+

@@ -33,10 +33,47 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" v-text="$t('santeplantesApp.traitement.maladie')" for="traitement-maladie">Maladie</label>
-                        <select class="form-control" id="traitement-maladie" name="maladie" v-model="traitement.maladie">
+                        <label class="form-control-label" v-text="$t('santeplantesApp.traitement.typeExtraction')" for="traitement-typeExtraction">Type Extraction</label>
+                        <select class="form-control" name="typeExtraction" :class="{'valid': !$v.traitement.typeExtraction.$invalid, 'invalid': $v.traitement.typeExtraction.$invalid }" v-model="$v.traitement.typeExtraction.$model" id="traitement-typeExtraction"  required>
+                            <option value="Infusion" v-bind:label="$t('santeplantesApp.TypeExtraction.Infusion')">Infusion</option>
+                            <option value="Decoction" v-bind:label="$t('santeplantesApp.TypeExtraction.Decoction')">Decoction</option>
+                            <option value="Masseration" v-bind:label="$t('santeplantesApp.TypeExtraction.Masseration')">Masseration</option>
+                            <option value="Autre" v-bind:label="$t('santeplantesApp.TypeExtraction.Autre')">Autre</option>
+                        </select>
+                        <div v-if="$v.traitement.typeExtraction.$anyDirty && $v.traitement.typeExtraction.$invalid">
+                            <small class="form-text text-danger" v-if="!$v.traitement.typeExtraction.required" v-text="$t('entity.validation.required')">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" v-text="$t('santeplantesApp.traitement.mixtureEtposologie')" for="traitement-mixtureEtposologie">Mixture Etposologie</label>
+                        <textarea class="form-control" name="mixtureEtposologie" id="traitement-mixtureEtposologie"
+                            :class="{'valid': !$v.traitement.mixtureEtposologie.$invalid, 'invalid': $v.traitement.mixtureEtposologie.$invalid }" v-model="$v.traitement.mixtureEtposologie.$model"  required></textarea>
+                        <div v-if="$v.traitement.mixtureEtposologie.$anyDirty && $v.traitement.mixtureEtposologie.$invalid">
+                            <small class="form-text text-danger" v-if="!$v.traitement.mixtureEtposologie.required" v-text="$t('entity.validation.required')">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" v-text="$t('santeplantesApp.traitement.sourceInfos')" for="traitement-sourceInfos">Source Infos</label>
+                        <textarea class="form-control" name="sourceInfos" id="traitement-sourceInfos"
+                            :class="{'valid': !$v.traitement.sourceInfos.$invalid, 'invalid': $v.traitement.sourceInfos.$invalid }" v-model="$v.traitement.sourceInfos.$model" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" v-text="$t('santeplantesApp.traitement.typeTraitement')" for="traitement-typeTraitement">Type Traitement</label>
+                        <select class="form-control" name="typeTraitement" :class="{'valid': !$v.traitement.typeTraitement.$invalid, 'invalid': $v.traitement.typeTraitement.$invalid }" v-model="$v.traitement.typeTraitement.$model" id="traitement-typeTraitement" >
+                            <option value="Preventif" v-bind:label="$t('santeplantesApp.TypeTraitement.Preventif')">Preventif</option>
+                            <option value="Curatif" v-bind:label="$t('santeplantesApp.TypeTraitement.Curatif')">Curatif</option>
+                            <option value="PreventifCuratif" v-bind:label="$t('santeplantesApp.TypeTraitement.PreventifCuratif')">PreventifCuratif</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" v-text="$t('santeplantesApp.traitement.plante')" for="traitement-plante">Plante</label>
+                        <select class="form-control" id="traitement-plante" name="plante" v-model="traitement.plante">
                             <option v-bind:value="null"></option>
-                            <option v-bind:value="traitement.maladie && maladieOption.id === traitement.maladie.id ? traitement.maladie : maladieOption" v-for="maladieOption in maladies" :key="maladieOption.id">{{maladieOption.nom}}</option>
+                            <option v-bind:value="traitement.plante && planteOption.id === traitement.plante.id ? traitement.plante : planteOption" v-for="planteOption in plantes" :key="planteOption.id">{{planteOption.nomCommun}}</option>
                         </select>
                     </div>
                 </div>

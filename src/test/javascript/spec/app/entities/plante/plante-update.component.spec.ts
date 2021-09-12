@@ -9,10 +9,6 @@ import PlanteUpdateComponent from '@/entities/plante/plante-update.vue';
 import PlanteClass from '@/entities/plante/plante-update.component';
 import PlanteService from '@/entities/plante/plante.service';
 
-import MaladieService from '@/entities/maladie/maladie.service';
-
-import BienfaitService from '@/entities/bienfait/bienfait.service';
-
 const localVue = createLocalVue();
 
 config.initVueApp(localVue);
@@ -39,10 +35,6 @@ describe('Component Tests', () => {
         provide: {
           alertService: () => new AlertService(store),
           planteService: () => planteServiceStub,
-
-          maladieService: () => new MaladieService(),
-
-          bienfaitService: () => new BienfaitService(),
         },
       });
       comp = wrapper.vm;

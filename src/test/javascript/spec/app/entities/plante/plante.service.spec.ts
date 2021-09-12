@@ -30,7 +30,20 @@ describe('Service Tests', () => {
     beforeEach(() => {
       service = new PlanteService();
 
-      elemDefault = new Plante(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Plante(
+        0,
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'AAAAAAA',
+        'image/png',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA'
+      );
     });
 
     describe('Service methods', () => {
@@ -86,6 +99,11 @@ describe('Service Tests', () => {
             nomCommun: 'BBBBBB',
             famille: 'BBBBBB',
             genre: 'BBBBBB',
+            photo: 'BBBBBB',
+            bienfaits: 'BBBBBB',
+            imageBienfaits: 'BBBBBB',
+            typeMaladies: 'BBBBBB',
+            maladies: 'BBBBBB',
           },
           elemDefault
         );
@@ -116,12 +134,17 @@ describe('Service Tests', () => {
             nomCommun: 'BBBBBB',
             famille: 'BBBBBB',
             genre: 'BBBBBB',
+            photo: 'BBBBBB',
+            bienfaits: 'BBBBBB',
+            imageBienfaits: 'BBBBBB',
+            typeMaladies: 'BBBBBB',
+            maladies: 'BBBBBB',
           },
           elemDefault
         );
         const expected = Object.assign({}, returnedFromService);
         mockedAxios.get.mockReturnValue(Promise.resolve([returnedFromService]));
-        return service.retrieve({ sort: {}, page: 0, size: 10 }).then(res => {
+        return service.retrieve().then(res => {
           expect(res).toContainEqual(expected);
         });
       });

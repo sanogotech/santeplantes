@@ -35,18 +35,77 @@
                             :class="{'valid': !$v.plante.genre.$invalid, 'invalid': $v.plante.genre.$invalid }" v-model="$v.plante.genre.$model" />
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" v-text="$t('santeplantesApp.plante.maladie')" for="plante-maladie">Maladie</label>
-                        <select class="form-control" id="plante-maladie" name="maladie" v-model="plante.maladie">
-                            <option v-bind:value="null"></option>
-                            <option v-bind:value="plante.maladie && maladieOption.id === plante.maladie.id ? plante.maladie : maladieOption" v-for="maladieOption in maladies" :key="maladieOption.id">{{maladieOption.nom}}</option>
-                        </select>
+                        <label class="form-control-label" v-text="$t('santeplantesApp.plante.photo')" for="plante-photo">Photo</label>
+                        <div>
+                            <img v-bind:src="'data:' + plante.photoContentType + ';base64,' + plante.photo" style="max-height: 100px;" v-if="plante.photo" alt="plante image"/>
+                            <div v-if="plante.photo" class="form-text text-danger clearfix">
+                                <span class="pull-left">{{plante.photoContentType}}, {{byteSize(plante.photo)}}</span>
+                                <button type="button" v-on:click="clearInputImage('photo', 'photoContentType', 'file_photo')" class="btn btn-secondary btn-xs pull-right">
+                                    <font-awesome-icon icon="times"></font-awesome-icon>
+                                </button>
+                            </div>
+                            <input type="file" ref="file_photo" id="file_photo" v-on:change="setFileData($event, plante, 'photo', true)" accept="image/*" v-text="$t('entity.action.addimage')"/>
+                        </div>
+                        <input type="hidden" class="form-control" name="photo" id="plante-photo"
+                            :class="{'valid': !$v.plante.photo.$invalid, 'invalid': $v.plante.photo.$invalid }" v-model="$v.plante.photo.$model" />
+                        <input type="hidden" class="form-control" name="photoContentType" id="plante-photoContentType"
+                            v-model="plante.photoContentType" />
                     </div>
                     <div class="form-group">
-                        <label class="form-control-label" v-text="$t('santeplantesApp.plante.bienfait')" for="plante-bienfait">Bienfait</label>
-                        <select class="form-control" id="plante-bienfait" name="bienfait" v-model="plante.bienfait">
-                            <option v-bind:value="null"></option>
-                            <option v-bind:value="plante.bienfait && bienfaitOption.id === plante.bienfait.id ? plante.bienfait : bienfaitOption" v-for="bienfaitOption in bienfaits" :key="bienfaitOption.id">{{bienfaitOption.nom}}</option>
-                        </select>
+                        <label class="form-control-label" v-text="$t('santeplantesApp.plante.bienfaits')" for="plante-bienfaits">Bienfaits</label>
+                        <input type="text" class="form-control" name="bienfaits" id="plante-bienfaits"
+                            :class="{'valid': !$v.plante.bienfaits.$invalid, 'invalid': $v.plante.bienfaits.$invalid }" v-model="$v.plante.bienfaits.$model"  required/>
+                        <div v-if="$v.plante.bienfaits.$anyDirty && $v.plante.bienfaits.$invalid">
+                            <small class="form-text text-danger" v-if="!$v.plante.bienfaits.required" v-text="$t('entity.validation.required')">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" v-if="!$v.plante.bienfaits.maxLength" v-text="$t('entity.validation.maxlength', {max: 350})">
+                                This field cannot be longer than 350 characters.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" v-text="$t('santeplantesApp.plante.imageBienfaits')" for="plante-imageBienfaits">Image Bienfaits</label>
+                        <div>
+                            <img v-bind:src="'data:' + plante.imageBienfaitsContentType + ';base64,' + plante.imageBienfaits" style="max-height: 100px;" v-if="plante.imageBienfaits" alt="plante image"/>
+                            <div v-if="plante.imageBienfaits" class="form-text text-danger clearfix">
+                                <span class="pull-left">{{plante.imageBienfaitsContentType}}, {{byteSize(plante.imageBienfaits)}}</span>
+                                <button type="button" v-on:click="clearInputImage('imageBienfaits', 'imageBienfaitsContentType', 'file_imageBienfaits')" class="btn btn-secondary btn-xs pull-right">
+                                    <font-awesome-icon icon="times"></font-awesome-icon>
+                                </button>
+                            </div>
+                            <input type="file" ref="file_imageBienfaits" id="file_imageBienfaits" v-on:change="setFileData($event, plante, 'imageBienfaits', true)" accept="image/*" v-text="$t('entity.action.addimage')"/>
+                        </div>
+                        <input type="hidden" class="form-control" name="imageBienfaits" id="plante-imageBienfaits"
+                            :class="{'valid': !$v.plante.imageBienfaits.$invalid, 'invalid': $v.plante.imageBienfaits.$invalid }" v-model="$v.plante.imageBienfaits.$model" />
+                        <input type="hidden" class="form-control" name="imageBienfaitsContentType" id="plante-imageBienfaitsContentType"
+                            v-model="plante.imageBienfaitsContentType" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" v-text="$t('santeplantesApp.plante.typeMaladies')" for="plante-typeMaladies">Type Maladies</label>
+                        <input type="text" class="form-control" name="typeMaladies" id="plante-typeMaladies"
+                            :class="{'valid': !$v.plante.typeMaladies.$invalid, 'invalid': $v.plante.typeMaladies.$invalid }" v-model="$v.plante.typeMaladies.$model"  required/>
+                        <div v-if="$v.plante.typeMaladies.$anyDirty && $v.plante.typeMaladies.$invalid">
+                            <small class="form-text text-danger" v-if="!$v.plante.typeMaladies.required" v-text="$t('entity.validation.required')">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" v-if="!$v.plante.typeMaladies.maxLength" v-text="$t('entity.validation.maxlength', {max: 300})">
+                                This field cannot be longer than 300 characters.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" v-text="$t('santeplantesApp.plante.maladies')" for="plante-maladies">Maladies</label>
+                        <input type="text" class="form-control" name="maladies" id="plante-maladies"
+                            :class="{'valid': !$v.plante.maladies.$invalid, 'invalid': $v.plante.maladies.$invalid }" v-model="$v.plante.maladies.$model"  required/>
+                        <div v-if="$v.plante.maladies.$anyDirty && $v.plante.maladies.$invalid">
+                            <small class="form-text text-danger" v-if="!$v.plante.maladies.required" v-text="$t('entity.validation.required')">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger" v-if="!$v.plante.maladies.maxLength" v-text="$t('entity.validation.maxlength', {max: 350})">
+                                This field cannot be longer than 350 characters.
+                            </small>
+                        </div>
                     </div>
                 </div>
                 <div>

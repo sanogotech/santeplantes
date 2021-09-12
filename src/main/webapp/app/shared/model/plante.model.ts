@@ -1,16 +1,16 @@
-import { IMaladie } from '@/shared/model/maladie.model';
-import { IBienfait } from '@/shared/model/bienfait.model';
-
 export interface IPlante {
   id?: number;
   nomScientifique?: string;
   nomCommun?: string;
   famille?: string;
   genre?: string;
-  maladies?: IMaladie[];
-  bienfaits?: IBienfait[];
-  maladie?: IMaladie;
-  bienfait?: IBienfait;
+  photoContentType?: string;
+  photo?: any;
+  bienfaits?: string;
+  imageBienfaitsContentType?: string;
+  imageBienfaits?: any;
+  typeMaladies?: string;
+  maladies?: string;
 }
 
 export class Plante implements IPlante {
@@ -20,9 +20,12 @@ export class Plante implements IPlante {
     public nomCommun?: string,
     public famille?: string,
     public genre?: string,
-    public maladies?: IMaladie[],
-    public bienfaits?: IBienfait[],
-    public maladie?: IMaladie,
-    public bienfait?: IBienfait
+    public photoContentType?: string,
+    public photo?: any,
+    public bienfaits?: string,
+    public imageBienfaitsContentType?: string,
+    public imageBienfaits?: any,
+    public typeMaladies?: string,
+    public maladies?: string
   ) {}
 }

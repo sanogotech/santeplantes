@@ -1,11 +1,11 @@
-id;nom_scientifique;nom_commun;famille;genre
-1;Customer Iowa;Pataca circuit Grenada;Baby;Rustic Steel Cheese Intelligent Metal Shoes Avon
-2;dynamic;benchmark;innovate reboot proactive;Nebraska
-3;mobile;European Unit of Account 17(E.U.A.-17) SCSI azure;Metal;transmit Gloves
-4;Refined ADP solutions;Product back up;Future-proofed;Anguilla
-5;deposit JSON;Berkshire distributed;Specialist Manor protocol;microchip
-6;Guernsey;Corporate Bedfordshire Vision-oriented;Baby;Triple-buffered deploy
-7;generating;Fords Sleek Rubber Table;Officer;Saudi Arabia
-8;connect Auto Loan Account;Maine extensible Chips;Architect capacitor;Cotton
-9;Liaison time-frame Customer;Enterprise-wide;Proactive;Usability
-10;one-to-one;migration drive;Generic;Optional
+id;nom_scientifique;nom_commun;famille;genre;photo;photo_content_type;bienfaits;image_bienfaits;image_bienfaits_content_type;type_maladies;maladies
+1;Customer Iowa;Pataca circuit Grenada;Baby;Rustic Steel Cheese Intelligent Metal Shoes Avon;../fake-data/blob/hipster.png;image/png;dynamic;../fake-data/blob/hipster.png;image/png;benchmark;innovate reboot proactive
+2;Nebraska;mobile;European Unit of Account 17(E.U.A.-17) SCSI azure;Metal;../fake-data/blob/hipster.png;image/png;transmit Gloves;../fake-data/blob/hipster.png;image/png;Refined ADP solutions;Product back up
+3;Future-proofed;Anguilla;deposit JSON;Berkshire distributed;../fake-data/blob/hipster.png;image/png;Specialist Manor protocol;../fake-data/blob/hipster.png;image/png;microchip;Guernsey
+4;Corporate Bedfordshire Vision-oriented;Baby;Triple-buffered deploy;generating;../fake-data/blob/hipster.png;image/png;Fords Sleek Rubber Table;../fake-data/blob/hipster.png;image/png;Officer;Saudi Arabia
+5;connect Auto Loan Account;Maine extensible Chips;Architect capacitor;Cotton;../fake-data/blob/hipster.png;image/png;Liaison time-frame Customer;../fake-data/blob/hipster.png;image/png;Enterprise-wide;Proactive
+6;Usability;one-to-one;migration drive;Generic;../fake-data/blob/hipster.png;image/png;Optional;../fake-data/blob/hipster.png;image/png;Tennessee;Chicken azure paradigms
+7;JSON Computer transmitting;Savings Account Synergized;THX;payment Baby De-engineered;../fake-data/blob/hipster.png;image/png;Director FTP Executive;../fake-data/blob/hipster.png;image/png;Chips Poland;feed killer
+8;motivating paradigm;Grocery Handcrafted withdrawal;e-tailers sensor;niches;../fake-data/blob/hipster.png;image/png;platforms Bermudian Dollar (customarily known as Bermuda Dollar);../fake-data/blob/hipster.png;image/png;pink Car Jewelery;Rwanda Pizza Chair
+9;Israel;AGP;benchmark Wooden generating;Engineer;../fake-data/blob/hipster.png;image/png;Handmade Rubber Soap;../fake-data/blob/hipster.png;image/png;Handmade;help-desk
+10;Usability eyeballs;Mission;Brunei Dollar turquoise;infomediaries Interactions toolset;../fake-data/blob/hipster.png;image/png;Advanced Cameroon Grenada;../fake-data/blob/hipster.png;image/png;Steel;asynchronous

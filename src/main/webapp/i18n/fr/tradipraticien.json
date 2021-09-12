@@ -15,17 +15,7 @@
       },
       "detail": {
         "title": "Tradipraticien"
-      },
-      "nom": "Nom",
-      "prenom": "Prenom",
-      "entreprise": "Entreprise",
-      "phone": "Phone",
-      "ville": "Ville",
-      "adresse": "Adresse",
-      "fiabilite": "Fiabilite",
-      "ras": "Ras",
-      "maladie": "Maladie",
-      "maladie": "Maladie"
+      }
     }
   }
 }

@@ -15,15 +15,7 @@
       },
       "detail": {
         "title": "Maladie"
-      },
-      "nom": "Nom",
-      "type": "Type",
-      "plante": "Plante",
-      "tradipraticien": "Tradipraticien",
-      "traitement": "Traitement",
-      "plante": "Plante",
-      "tradipraticien": "Tradipraticien",
-      "traitement": "Traitement"
+      }
     }
   }
 }

@@ -32,14 +32,8 @@
                         <font-awesome-icon icon="th-list" />
                         <span v-text="$t('global.menu.entities.main')">Entities</span>
                     </span>
-                    <b-dropdown-item to="/tradipraticien">
-                        <font-awesome-icon icon="asterisk" />
-                        <span v-text="$t('global.menu.entities.tradipraticien')">Tradipraticien</span>
-                    </b-dropdown-item>
-                    <b-dropdown-item to="/maladie">
-                        <font-awesome-icon icon="asterisk" />
-                        <span v-text="$t('global.menu.entities.maladie')">Maladie</span>
-                    </b-dropdown-item>
+                  
+                
                     <b-dropdown-item to="/plante">
                         <font-awesome-icon icon="asterisk" />
                         <span v-text="$t('global.menu.entities.plante')">Plante</span>
@@ -48,10 +42,7 @@
                         <font-awesome-icon icon="asterisk" />
                         <span v-text="$t('global.menu.entities.traitement')">Traitement</span>
                     </b-dropdown-item>
-                    <b-dropdown-item to="/bienfait">
-                        <font-awesome-icon icon="asterisk" />
-                        <span v-text="$t('global.menu.entities.bienfait')">Bienfait</span>
-                    </b-dropdown-item>
+                    
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown

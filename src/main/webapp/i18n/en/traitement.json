@@ -18,8 +18,11 @@
       },
       "nom": "Nom",
       "fiabilite": "Fiabilite",
-      "maladie": "Maladie",
-      "maladie": "Maladie"
+      "typeExtraction": "Type Extraction",
+      "mixtureEtposologie": "Mixture Etposologie",
+      "sourceInfos": "Source Infos",
+      "typeTraitement": "Type Traitement",
+      "plante": "Plante"
     }
   }
 }

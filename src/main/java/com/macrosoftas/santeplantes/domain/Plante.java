@@ -1,6 +1,5 @@
 package com.macrosoftas.santeplantes.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Plante.
@@ -30,7 +27,7 @@ public class Plante implements Serializable {
     private String nomScientifique;
 
     @NotNull
-    @Column(name = "nom_commun", nullable = false)
+    @Column(name = "nom_commun", nullable = false, unique = true)
     private String nomCommun;
 
     @Column(name = "famille")
@@ -39,21 +36,34 @@ public class Plante implements Serializable {
     @Column(name = "genre")
     private String genre;
 
-    @OneToMany(mappedBy = "plante")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Maladie> maladies = new HashSet<>();
+    @Lob
+    @Column(name = "photo")
+    private byte[] photo;
 
-    @OneToMany(mappedBy = "plante")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Bienfait> bienfaits = new HashSet<>();
+    @Column(name = "photo_content_type")
+    private String photoContentType;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "plantes", allowSetters = true)
-    private Maladie maladie;
+    @NotNull
+    @Size(max = 350)
+    @Column(name = "bienfaits", length = 350, nullable = false)
+    private String bienfaits;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "plantes", allowSetters = true)
-    private Bienfait bienfait;
+    @Lob
+    @Column(name = "image_bienfaits")
+    private byte[] imageBienfaits;
+
+    @Column(name = "image_bienfaits_content_type")
+    private String imageBienfaitsContentType;
+
+    @NotNull
+    @Size(max = 300)
+    @Column(name = "type_maladies", length = 300, nullable = false)
+    private String typeMaladies;
+
+    @NotNull
+    @Size(max = 350)
+    @Column(name = "maladies", length = 350, nullable = false)
+    private String maladies;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -116,80 +126,95 @@ public class Plante implements Serializable {
         this.genre = genre;
     }
 
-    public Set<Maladie> getMaladies() {
-        return maladies;
+    public byte[] getPhoto() {
+        return photo;
     }
 
-    public Plante maladies(Set<Maladie> maladies) {
-        this.maladies = maladies;
+    public Plante photo(byte[] photo) {
+        this.photo = photo;
         return this;
     }
 
-    public Plante addMaladie(Maladie maladie) {
-        this.maladies.add(maladie);
-        maladie.setPlante(this);
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
+    public String getPhotoContentType() {
+        return photoContentType;
+    }
+
+    public Plante photoContentType(String photoContentType) {
+        this.photoContentType = photoContentType;
         return this;
     }
 
-    public Plante removeMaladie(Maladie maladie) {
-        this.maladies.remove(maladie);
-        maladie.setPlante(null);
-        return this;
+    public void setPhotoContentType(String photoContentType) {
+        this.photoContentType = photoContentType;
     }
 
-    public void setMaladies(Set<Maladie> maladies) {
-        this.maladies = maladies;
-    }
-
-    public Set<Bienfait> getBienfaits() {
+    public String getBienfaits() {
         return bienfaits;
     }
 
-    public Plante bienfaits(Set<Bienfait> bienfaits) {
+    public Plante bienfaits(String bienfaits) {
         this.bienfaits = bienfaits;
         return this;
     }
 
-    public Plante addBienfait(Bienfait bienfait) {
-        this.bienfaits.add(bienfait);
-        bienfait.setPlante(this);
-        return this;
-    }
-
-    public Plante removeBienfait(Bienfait bienfait) {
-        this.bienfaits.remove(bienfait);
-        bienfait.setPlante(null);
-        return this;
-    }
-
-    public void setBienfaits(Set<Bienfait> bienfaits) {
+    public void setBienfaits(String bienfaits) {
         this.bienfaits = bienfaits;
     }
 
-    public Maladie getMaladie() {
-        return maladie;
+    public byte[] getImageBienfaits() {
+        return imageBienfaits;
     }
 
-    public Plante maladie(Maladie maladie) {
-        this.maladie = maladie;
+    public Plante imageBienfaits(byte[] imageBienfaits) {
+        this.imageBienfaits = imageBienfaits;
         return this;
     }
 
-    public void setMaladie(Maladie maladie) {
-        this.maladie = maladie;
+    public void setImageBienfaits(byte[] imageBienfaits) {
+        this.imageBienfaits = imageBienfaits;
     }
 
-    public Bienfait getBienfait() {
-        return bienfait;
+    public String getImageBienfaitsContentType() {
+        return imageBienfaitsContentType;
     }
 
-    public Plante bienfait(Bienfait bienfait) {
-        this.bienfait = bienfait;
+    public Plante imageBienfaitsContentType(String imageBienfaitsContentType) {
+        this.imageBienfaitsContentType = imageBienfaitsContentType;
         return this;
     }
 
-    public void setBienfait(Bienfait bienfait) {
-        this.bienfait = bienfait;
+    public void setImageBienfaitsContentType(String imageBienfaitsContentType) {
+        this.imageBienfaitsContentType = imageBienfaitsContentType;
+    }
+
+    public String getTypeMaladies() {
+        return typeMaladies;
+    }
+
+    public Plante typeMaladies(String typeMaladies) {
+        this.typeMaladies = typeMaladies;
+        return this;
+    }
+
+    public void setTypeMaladies(String typeMaladies) {
+        this.typeMaladies = typeMaladies;
+    }
+
+    public String getMaladies() {
+        return maladies;
+    }
+
+    public Plante maladies(String maladies) {
+        this.maladies = maladies;
+        return this;
+    }
+
+    public void setMaladies(String maladies) {
+        this.maladies = maladies;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -218,6 +243,13 @@ public class Plante implements Serializable {
             ", nomCommun='" + getNomCommun() + "'" +
             ", famille='" + getFamille() + "'" +
             ", genre='" + getGenre() + "'" +
+            ", photo='" + getPhoto() + "'" +
+            ", photoContentType='" + getPhotoContentType() + "'" +
+            ", bienfaits='" + getBienfaits() + "'" +
+            ", imageBienfaits='" + getImageBienfaits() + "'" +
+            ", imageBienfaitsContentType='" + getImageBienfaitsContentType() + "'" +
+            ", typeMaladies='" + getTypeMaladies() + "'" +
+            ", maladies='" + getMaladies() + "'" +
             "}";
     }
 }

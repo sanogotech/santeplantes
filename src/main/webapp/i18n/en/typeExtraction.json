@@ -1,0 +1,11 @@
+{
+  "santeplantesApp": {
+    "TypeExtraction": {
+      "null": "",
+      "Infusion": "Infusion",
+      "Decoction": "Decoction",
+      "Masseration": "Masseration",
+      "Autre": "Autre"
+    }
+  }
+}

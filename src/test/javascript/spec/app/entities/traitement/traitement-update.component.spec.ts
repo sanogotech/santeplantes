@@ -9,7 +9,7 @@ import TraitementUpdateComponent from '@/entities/traitement/traitement-update.v
 import TraitementClass from '@/entities/traitement/traitement-update.component';
 import TraitementService from '@/entities/traitement/traitement.service';
 
-import MaladieService from '@/entities/maladie/maladie.service';
+import PlanteService from '@/entities/plante/plante.service';
 
 const localVue = createLocalVue();
 
@@ -38,7 +38,7 @@ describe('Component Tests', () => {
           alertService: () => new AlertService(store),
           traitementService: () => traitementServiceStub,
 
-          maladieService: () => new MaladieService(),
+          planteService: () => new PlanteService(),
         },
       });
       comp = wrapper.vm;

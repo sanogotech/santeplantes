@@ -29,20 +29,44 @@
                         <span>{{plante.genre}}</span>
                     </dd>
                     <dt>
-                        <span v-text="$t('santeplantesApp.plante.maladie')">Maladie</span>
+                        <span v-text="$t('santeplantesApp.plante.photo')">Photo</span>
                     </dt>
                     <dd>
-                        <div v-if="plante.maladie">
-                            <router-link :to="{name: 'MaladieView', params: {maladieId: plante.maladie.id}}">{{plante.maladie.nom}}</router-link>
+                        <div v-if="plante.photo">
+                            <a v-on:click="openFile(plante.photoContentType, plante.photo)">
+                                <img v-bind:src="'data:' + plante.photoContentType + ';base64,' + plante.photo" style="max-width: 100%;" alt="plante image"/>
+                            </a>
+                            {{plante.photoContentType}}, {{byteSize(plante.photo)}}
                         </div>
                     </dd>
                     <dt>
-                        <span v-text="$t('santeplantesApp.plante.bienfait')">Bienfait</span>
+                        <span v-text="$t('santeplantesApp.plante.bienfaits')">Bienfaits</span>
                     </dt>
                     <dd>
-                        <div v-if="plante.bienfait">
-                            <router-link :to="{name: 'BienfaitView', params: {bienfaitId: plante.bienfait.id}}">{{plante.bienfait.nom}}</router-link>
+                        <span>{{plante.bienfaits}}</span>
+                    </dd>
+                    <dt>
+                        <span v-text="$t('santeplantesApp.plante.imageBienfaits')">Image Bienfaits</span>
+                    </dt>
+                    <dd>
+                        <div v-if="plante.imageBienfaits">
+                            <a v-on:click="openFile(plante.imageBienfaitsContentType, plante.imageBienfaits)">
+                                <img v-bind:src="'data:' + plante.imageBienfaitsContentType + ';base64,' + plante.imageBienfaits" style="max-width: 100%;" alt="plante image"/>
+                            </a>
+                            {{plante.imageBienfaitsContentType}}, {{byteSize(plante.imageBienfaits)}}
                         </div>
+                    </dd>
+                    <dt>
+                        <span v-text="$t('santeplantesApp.plante.typeMaladies')">Type Maladies</span>
+                    </dt>
+                    <dd>
+                        <span>{{plante.typeMaladies}}</span>
+                    </dd>
+                    <dt>
+                        <span v-text="$t('santeplantesApp.plante.maladies')">Maladies</span>
+                    </dt>
+                    <dd>
+                        <span>{{plante.maladies}}</span>
                     </dd>
                 </dl>
                 <button type="submit"

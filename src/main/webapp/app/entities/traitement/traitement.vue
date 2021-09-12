@@ -27,7 +27,11 @@
                     <th><span v-text="$t('global.field.id')">ID</span></th>
                     <th><span v-text="$t('santeplantesApp.traitement.nom')">Nom</span></th>
                     <th><span v-text="$t('santeplantesApp.traitement.fiabilite')">Fiabilite</span></th>
-                    <th><span v-text="$t('santeplantesApp.traitement.maladie')">Maladie</span></th>
+                    <th><span v-text="$t('santeplantesApp.traitement.typeExtraction')">Type Extraction</span></th>
+                    <th><span v-text="$t('santeplantesApp.traitement.mixtureEtposologie')">Mixture Etposologie</span></th>
+                    <th><span v-text="$t('santeplantesApp.traitement.sourceInfos')">Source Infos</span></th>
+                    <th><span v-text="$t('santeplantesApp.traitement.typeTraitement')">Type Traitement</span></th>
+                    <th><span v-text="$t('santeplantesApp.traitement.plante')">Plante</span></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -39,9 +43,13 @@
                     </td>
                     <td>{{traitement.nom}}</td>
                     <td v-text="$t('santeplantesApp.Fiabilite.' + traitement.fiabilite)">{{traitement.fiabilite}}</td>
+                    <td v-text="$t('santeplantesApp.TypeExtraction.' + traitement.typeExtraction)">{{traitement.typeExtraction}}</td>
+                    <td>{{traitement.mixtureEtposologie}}</td>
+                    <td>{{traitement.sourceInfos}}</td>
+                    <td v-text="$t('santeplantesApp.TypeTraitement.' + traitement.typeTraitement)">{{traitement.typeTraitement}}</td>
                     <td>
-                        <div v-if="traitement.maladie">
-                            <router-link :to="{name: 'MaladieView', params: {maladieId: traitement.maladie.id}}">{{traitement.maladie.nom}}</router-link>
+                        <div v-if="traitement.plante">
+                            <router-link :to="{name: 'PlanteView', params: {planteId: traitement.plante.id}}">{{traitement.plante.nomCommun}}</router-link>
                         </div>
                     </td>
                     <td class="text-right">
